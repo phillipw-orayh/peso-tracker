@@ -503,14 +503,15 @@ class _ChallengesScreenState extends State<ChallengesScreen>
     return Consumer<ChallengeProvider>(
       builder: (context, challengeProvider, child) {
         final earnedBadges = challengeProvider.earnedBadges;
-        
+
         if (earnedBadges.isEmpty) {
           return Container(
             width: double.infinity,
             padding: const EdgeInsets.all(AppConstants.defaultPadding),
             decoration: BoxDecoration(
               color: Colors.grey.shade50,
-              borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+              borderRadius:
+                  BorderRadius.circular(AppConstants.defaultBorderRadius),
               border: Border.all(color: Colors.grey.shade200),
             ),
             child: Column(
@@ -562,61 +563,63 @@ class _ChallengesScreenState extends State<ChallengesScreen>
           children: [
             // Show up to 3 recent badges
             ...earnedBadges.take(3).map((badge) => Container(
-              margin: const EdgeInsets.only(bottom: AppConstants.smallPadding),
-              padding: const EdgeInsets.all(AppConstants.defaultPadding),
-              decoration: BoxDecoration(
-                color: AppConstants.successColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
-                border: Border.all(
-                  color: AppConstants.successColor.withOpacity(0.2),
-                ),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: AppConstants.successColor,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.emoji_events,
-                      color: Colors.white,
-                      size: 20,
+                  margin:
+                      const EdgeInsets.only(bottom: AppConstants.smallPadding),
+                  padding: const EdgeInsets.all(AppConstants.defaultPadding),
+                  decoration: BoxDecoration(
+                    color: AppConstants.successColor.withOpacity(0.1),
+                    borderRadius:
+                        BorderRadius.circular(AppConstants.defaultBorderRadius),
+                    border: Border.all(
+                      color: AppConstants.successColor.withOpacity(0.2),
                     ),
                   ),
-                  const SizedBox(width: AppConstants.defaultPadding),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          badge.name,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                          ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: const BoxDecoration(
+                          color: AppConstants.successColor,
+                          shape: BoxShape.circle,
                         ),
-                        Text(
-                          badge.description,
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontSize: 12,
-                          ),
+                        child: const Icon(
+                          Icons.emoji_events,
+                          color: Colors.white,
+                          size: 20,
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: AppConstants.defaultPadding),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              badge.name,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                              ),
+                            ),
+                            Text(
+                              badge.description,
+                              style: TextStyle(
+                                color: Colors.grey.shade600,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Icon(
+                        Icons.verified,
+                        color: AppConstants.successColor,
+                        size: 20,
+                      ),
+                    ],
                   ),
-                  Icon(
-                    Icons.verified,
-                    color: AppConstants.successColor,
-                    size: 20,
-                  ),
-                ],
-              ),
-            )),
-            
+                )),
+
             // Summary and link
             if (earnedBadges.length > 3) ...[
               const SizedBox(height: AppConstants.smallPadding),
@@ -625,7 +628,8 @@ class _ChallengesScreenState extends State<ChallengesScreen>
                 padding: const EdgeInsets.all(AppConstants.smallPadding),
                 decoration: BoxDecoration(
                   color: AppConstants.primaryColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+                  borderRadius:
+                      BorderRadius.circular(AppConstants.defaultBorderRadius),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
