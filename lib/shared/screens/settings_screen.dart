@@ -4,6 +4,7 @@ import 'package:peso_tracker/core/services/navigation_service.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../shared/widgets/section_header.dart';
 import '../providers/gamification_provider.dart';
+import '../../features/challenge/screens/challenge_screen.dart';
 import 'user_management_screen.dart';
 
 /// Full‑screen Settings page (replaces the narrow dialog UI).
@@ -48,6 +49,19 @@ class SettingsScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
+                  ListTile(
+                    leading: const Icon(Icons.person_outline),
+                    title: const Text('Profile'),
+                    subtitle: const Text('Name, avatar, preferences'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const ChallengeScreen()),
+                      );
+                    },
+                  ),
+                  const Divider(height: 0),
                   ListTile(
                     leading: const Icon(Icons.group_outlined),
                     title: const Text('User Management'),
