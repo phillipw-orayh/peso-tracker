@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Adjust the path below if your dialog lives elsewhere
-import '../../features/profile/widgets/settings_dialog.dart';
+import '../screens/settings_screen.dart';
 
 /// Centralized way to open the Settings popup from anywhere.
 /// - Prevents multiple stacked dialogs
@@ -27,7 +27,8 @@ class SettingsLauncher {
     // Resolve context: prefer the explicit BuildContext; fallback to navigatorKey
     final ctx = context ?? navigatorKey?.currentContext;
     if (ctx == null) {
-      debugPrint('SettingsLauncher.show: No context or navigatorKey available.');
+      debugPrint(
+          'SettingsLauncher.show: No context or navigatorKey available.');
       return;
     }
 
@@ -40,7 +41,7 @@ class SettingsLauncher {
         context: ctx,
         barrierDismissible: barrierDismissible,
         useRootNavigator: useRootNavigator,
-        builder: (_) => const SettingsDialog(),
+        builder: (_) => const SettingsScreen(),
       );
     } finally {
       _isOpen = false;

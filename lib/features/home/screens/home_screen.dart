@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:peso_tracker/shared/widgets/settings_launcher.dart';
 import '../../../shared/providers/expense_provider.dart';
 import '../../../shared/providers/goal_provider.dart';
 import '../../../shared/providers/gamification_provider.dart';
@@ -41,7 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Consumer<LocaleProvider>(
           builder: (context, locale, child) {
             return Text(
-              locale.isFilipino ? 'Kumusta, ${_getUserName()}!' : 'Hello, ${_getUserName()}!',
+              locale.isFilipino
+                  ? 'Kumusta, ${_getUserName()}!'
+                  : 'Hello, ${_getUserName()}!',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppConstants.primaryColor,
@@ -53,10 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications_outlined),
-            color: AppConstants.primaryColor,
-            onPressed: () {
-            },
+            icon: const Icon(Icons.settings),
+            tooltip: 'Settings',
+            onPressed: () => SettingsLauncher.show(context: context),
           ),
         ],
       ),
@@ -173,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Consumer2<ExpenseProvider, LocaleProvider>(
       builder: (context, expenseProvider, locale, child) {
         final recentExpenses = expenseProvider.expenses.take(5).toList();
-        
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -209,26 +211,28 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             else
               ...recentExpenses.map((expense) => Card(
-                margin: const EdgeInsets.only(bottom: AppConstants.smallPadding),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: AppConstants.primaryColor.withOpacity(0.1),
-                    child: Icon(
-                      _getCategoryIcon(expense.category),
-                      color: AppConstants.primaryColor,
+                    margin: const EdgeInsets.only(
+                        bottom: AppConstants.smallPadding),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor:
+                            AppConstants.primaryColor.withOpacity(0.1),
+                        child: Icon(
+                          _getCategoryIcon(expense.category),
+                          color: AppConstants.primaryColor,
+                        ),
+                      ),
+                      title: Text(expense.description),
+                      subtitle: Text(expense.category),
+                      trailing: Text(
+                        locale.formatCurrency(expense.amount),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: AppConstants.primaryColor,
+                        ),
+                      ),
                     ),
-                  ),
-                  title: Text(expense.description),
-                  subtitle: Text(expense.category),
-                  trailing: Text(
-                    locale.formatCurrency(expense.amount),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: AppConstants.primaryColor,
-                    ),
-                  ),
-                ),
-              )),
+                  )),
           ],
         );
       },

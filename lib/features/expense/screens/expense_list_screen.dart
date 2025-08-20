@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:peso_tracker/shared/widgets/settings_launcher.dart';
 import '../../../shared/widgets/bottom_navigation.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/services/navigation_service.dart';
@@ -48,8 +49,9 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => NavigationService.goToAddExpense(),
+            icon: const Icon(Icons.settings),
+            tooltip: 'Settings',
+            onPressed: () => SettingsLauncher.show(context: context),
           ),
         ],
       ),
@@ -65,7 +67,8 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
                   );
                 }
 
-                final filteredExpenses = _getFilteredExpenses(expenseProvider.expenses);
+                final filteredExpenses =
+                    _getFilteredExpenses(expenseProvider.expenses);
 
                 if (filteredExpenses.isEmpty) {
                   return _buildEmptyState();
@@ -120,7 +123,8 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
       onChanged: (value) {
         setState(() {
@@ -222,13 +226,15 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
           margin: const EdgeInsets.only(bottom: AppConstants.smallPadding),
           child: InkWell(
             onTap: () => _showExpenseDetails(expense),
-            borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+            borderRadius:
+                BorderRadius.circular(AppConstants.defaultBorderRadius),
             child: Padding(
               padding: const EdgeInsets.all(AppConstants.defaultPadding),
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundColor: _getCategoryColor(expense.category).withOpacity(0.2),
+                    backgroundColor:
+                        _getCategoryColor(expense.category).withOpacity(0.2),
                     child: Icon(
                       _getCategoryIcon(expense.category),
                       color: _getCategoryColor(expense.category),
@@ -250,7 +256,8 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
                         Row(
                           children: [
                             Text(
-                              locale.getLocalizedText(expense.category.toLowerCase()),
+                              locale.getLocalizedText(
+                                  expense.category.toLowerCase()),
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey.shade600,
@@ -291,7 +298,8 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
                       ),
                       if (_isToday(expense.dateTime))
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 2),
                           decoration: BoxDecoration(
                             color: AppConstants.successColor,
                             borderRadius: BorderRadius.circular(10),
@@ -338,7 +346,8 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
               Row(
                 children: [
                   CircleAvatar(
-                    backgroundColor: _getCategoryColor(expense.category).withOpacity(0.2),
+                    backgroundColor:
+                        _getCategoryColor(expense.category).withOpacity(0.2),
                     radius: 30,
                     child: Icon(
                       _getCategoryIcon(expense.category),
@@ -372,10 +381,14 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
                 ],
               ),
               const SizedBox(height: AppConstants.defaultPadding),
-              _buildDetailRow('Category', locale.getLocalizedText(expense.category.toLowerCase())),
+              _buildDetailRow('Category',
+                  locale.getLocalizedText(expense.category.toLowerCase())),
               if (expense.subcategory != null)
                 _buildDetailRow('Subcategory', expense.subcategory!),
-              _buildDetailRow('Date', DateFormat('MMMM dd, yyyy - hh:mm a').format(expense.dateTime)),
+              _buildDetailRow(
+                  'Date',
+                  DateFormat('MMMM dd, yyyy - hh:mm a')
+                      .format(expense.dateTime)),
               const SizedBox(height: AppConstants.defaultPadding),
               Row(
                 children: [
@@ -401,7 +414,8 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
                       },
                       style: OutlinedButton.styleFrom(
                         foregroundColor: AppConstants.primaryColor,
-                        side: const BorderSide(color: AppConstants.primaryColor),
+                        side:
+                            const BorderSide(color: AppConstants.primaryColor),
                       ),
                       child: const Text('Duplicate'),
                     ),
@@ -413,7 +427,8 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
                         Navigator.pop(context);
                         // TODO: Implement edit functionality
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Edit feature coming soon!')),
+                          const SnackBar(
+                              content: Text('Edit feature coming soon!')),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -464,7 +479,8 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Delete Expense'),
-        content: Text('Are you sure you want to delete "${expense.description}"?'),
+        content:
+            Text('Are you sure you want to delete "${expense.description}"?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -494,7 +510,8 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
                 }
               }
             },
-            style: TextButton.styleFrom(foregroundColor: AppConstants.errorColor),
+            style:
+                TextButton.styleFrom(foregroundColor: AppConstants.errorColor),
             child: const Text('Delete'),
           ),
         ],
@@ -514,17 +531,18 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
         dateTime: DateTime.now(),
         receiptPath: originalExpense.receiptPath,
         location: originalExpense.location,
-        metadata: originalExpense.metadata != null 
+        metadata: originalExpense.metadata != null
             ? Map<String, dynamic>.from(originalExpense.metadata!)
             : null,
       );
 
       await context.read<ExpenseProvider>().addExpense(duplicatedExpense);
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Expense duplicated successfully - ₱${duplicatedExpense.amount.toStringAsFixed(2)}'),
+            content: Text(
+                'Expense duplicated successfully - ₱${duplicatedExpense.amount.toStringAsFixed(2)}'),
             backgroundColor: AppConstants.successColor,
             action: SnackBarAction(
               label: 'View',
@@ -554,10 +572,10 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
       final matchesSearch = _searchQuery.isEmpty ||
           expense.description.toLowerCase().contains(_searchQuery) ||
           expense.category.toLowerCase().contains(_searchQuery);
-      
+
       final matchesCategory = _selectedCategoryFilter == null ||
           expense.category == _selectedCategoryFilter;
-      
+
       return matchesSearch && matchesCategory;
     }).toList();
   }

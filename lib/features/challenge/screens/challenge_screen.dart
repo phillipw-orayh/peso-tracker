@@ -8,22 +8,23 @@ import '../../../core/services/navigation_service.dart';
 import '../../gamification/widgets/badges_section.dart';
 import '../../gamification/widgets/challenge_stats_card.dart';
 import '../../gamification/widgets/challenge_card.dart';
+import '../../../shared/models/challenge.dart';
 import '../../../core/services/celebration_service.dart';
-import '../widgets/settings_dialog.dart';
+import '../../../shared/screens/settings_screen.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class ChallengeScreen extends StatefulWidget {
+  const ChallengeScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ChallengeScreen> createState() => _ChallengeScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateMixin {
+class _ChallengeScreenState extends State<ChallengeScreen>
+    with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
     _loadChallengeData();
-    // Initialize celebration service
     WidgetsBinding.instance.addPostFrameCallback((_) {
       CelebrationService.initialize(this);
     });
@@ -36,7 +37,6 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
   }
 
   Future<void> _loadChallengeData() async {
-    // Set context for celebrations
     context.read<ChallengeProvider>().setContext(context);
     await context.read<ChallengeProvider>().refreshChallenges();
   }
@@ -76,35 +76,27 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
                     child: ChallengeStatsCard(),
                   ),
                 ),
-                
+
                 Padding(
                   padding: const EdgeInsets.all(AppConstants.defaultPadding),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Active Challenges Section
                       _buildSectionHeader('Active Challenges', Icons.timer),
                       const SizedBox(height: AppConstants.smallPadding),
                       _buildActiveChallengesSection(),
-                      
                       const SizedBox(height: AppConstants.largePadding),
-                      
-                      // Earned Badges Section
                       _buildSectionHeader('Earned Badges', Icons.emoji_events),
                       const SizedBox(height: AppConstants.smallPadding),
                       const BadgesSection(),
-                      
                       const SizedBox(height: AppConstants.largePadding),
-                      
-                      // Available Challenges Section
-                      _buildSectionHeader('Available Challenges', Icons.explore),
+                      _buildSectionHeader(
+                          'Available Challenges', Icons.explore),
                       const SizedBox(height: AppConstants.smallPadding),
                       _buildAvailableChallengesSection(),
-                      
                       const SizedBox(height: AppConstants.largePadding),
-                      
-                      // Recent Completions
-                      _buildSectionHeader('Recent Completions', Icons.check_circle),
+                      _buildSectionHeader(
+                          'Recent Completions', Icons.check_circle),
                       const SizedBox(height: AppConstants.smallPadding),
                       _buildRecentCompletions(),
                     ],
@@ -140,19 +132,21 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
     return Consumer<ChallengeProvider>(
       builder: (context, challengeProvider, child) {
         final activeChallenges = challengeProvider.activeChallenges;
-        
+
         if (activeChallenges.isEmpty) {
           return Container(
             width: double.infinity,
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: Colors.grey.shade50,
-              borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+              borderRadius:
+                  BorderRadius.circular(AppConstants.defaultBorderRadius),
               border: Border.all(color: Colors.grey.shade200),
             ),
             child: Column(
               children: [
-                Icon(Icons.flag_outlined, size: 48, color: Colors.grey.shade400),
+                Icon(Icons.flag_outlined,
+                    size: 48, color: Colors.grey.shade400),
                 const SizedBox(height: 12),
                 Text(
                   'No Active Challenges',
@@ -187,9 +181,10 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
 
         return Column(
           children: activeChallenges.map((userChallenge) {
-            final challenge = challengeProvider.getChallengeById(userChallenge.challengeId);
+            final challenge =
+                challengeProvider.getChallengeById(userChallenge.challengeId);
             if (challenge == null) return const SizedBox.shrink();
-            
+
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: ChallengeCard(
@@ -209,17 +204,18 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
     return Consumer<ChallengeProvider>(
       builder: (context, challengeProvider, child) {
         final availableChallenges = challengeProvider.availableChallenges
-            .where((challenge) => !challengeProvider.isEnrolledInChallenge(challenge.id))
+            .where((c) => !challengeProvider.isEnrolledInChallenge(c.id))
             .take(3)
             .toList();
-            
+
         if (availableChallenges.isEmpty) {
           return Container(
             width: double.infinity,
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: Colors.grey.shade50,
-              borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+              borderRadius:
+                  BorderRadius.circular(AppConstants.defaultBorderRadius),
               border: Border.all(color: Colors.grey.shade200),
             ),
             child: Column(
@@ -236,7 +232,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'You\'re enrolled in all available challenges. Keep up the great work!',
+                  'You\'re enrolled in all available challenges. Keep it up!',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey.shade500,
@@ -251,14 +247,14 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
         return Column(
           children: [
             ...availableChallenges.map((challenge) => Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: ChallengeCard(
-                challenge: challenge,
-                isEnrolled: false,
-                progress: 0.0,
-                onToggle: () => _toggleChallengeEnrollment(challenge.id),
-              ),
-            )),
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: ChallengeCard(
+                    challenge: challenge,
+                    isEnrolled: false,
+                    progress: 0.0,
+                    onToggle: () => _toggleChallengeEnrollment(challenge.id),
+                  ),
+                )),
             const SizedBox(height: 12),
             TextButton(
               onPressed: () => NavigationService.goToChallenges(),
@@ -273,22 +269,23 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
   Widget _buildRecentCompletions() {
     return Consumer<ChallengeProvider>(
       builder: (context, challengeProvider, child) {
-        final completedChallenges = challengeProvider.completedChallenges
-            .take(3)
-            .toList();
-            
+        final completedChallenges =
+            challengeProvider.completedChallenges.take(3).toList();
+
         if (completedChallenges.isEmpty) {
           return Container(
             width: double.infinity,
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: Colors.grey.shade50,
-              borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+              borderRadius:
+                  BorderRadius.circular(AppConstants.defaultBorderRadius),
               border: Border.all(color: Colors.grey.shade200),
             ),
             child: Column(
               children: [
-                Icon(Icons.pending_actions, size: 48, color: Colors.grey.shade400),
+                Icon(Icons.pending_actions,
+                    size: 48, color: Colors.grey.shade400),
                 const SizedBox(height: 12),
                 Text(
                   'No Completions Yet',
@@ -314,16 +311,19 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
 
         return Column(
           children: completedChallenges.map((userChallenge) {
-            final challenge = challengeProvider.getChallengeById(userChallenge.challengeId);
+            final challenge =
+                challengeProvider.getChallengeById(userChallenge.challengeId);
             if (challenge == null) return const SizedBox.shrink();
-            
+
             return Container(
               margin: const EdgeInsets.only(bottom: 12),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: AppConstants.successColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
-                border: Border.all(color: AppConstants.successColor.withOpacity(0.3)),
+                borderRadius:
+                    BorderRadius.circular(AppConstants.defaultBorderRadius),
+                border: Border.all(
+                    color: AppConstants.successColor.withOpacity(0.3)),
               ),
               child: Row(
                 children: [
@@ -334,7 +334,8 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
                       color: AppConstants.successColor,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.check, color: Colors.white, size: 24),
+                    child:
+                        const Icon(Icons.check, color: Colors.white, size: 24),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
@@ -360,7 +361,8 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: AppConstants.successColor,
                       borderRadius: BorderRadius.circular(16),
@@ -385,10 +387,10 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
 
   String _formatCompletionDate(DateTime? date) {
     if (date == null) return 'recently';
-    
+
     final now = DateTime.now();
     final difference = now.difference(date);
-    
+
     if (difference.inDays == 0) {
       return 'today';
     } else if (difference.inDays == 1) {
@@ -402,7 +404,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
 
   void _toggleChallengeEnrollment(String challengeId) {
     final challengeProvider = context.read<ChallengeProvider>();
-    
+
     if (challengeProvider.isEnrolledInChallenge(challengeId)) {
       _showUnenrollDialog(challengeId);
     } else {
@@ -414,9 +416,9 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
   void _showUnenrollDialog(String challengeId) {
     final challengeProvider = context.read<ChallengeProvider>();
     final challenge = challengeProvider.getChallengeById(challengeId);
-    
+
     if (challenge == null) return;
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -445,9 +447,9 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
   void _showEnrollmentSuccess(String challengeId) {
     final challengeProvider = context.read<ChallengeProvider>();
     final challenge = challengeProvider.getChallengeById(challengeId);
-    
+
     if (challenge == null) return;
-    
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
@@ -472,7 +474,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
   void _showSettingsDialog() {
     showDialog(
       context: context,
-      builder: (context) => const SettingsDialog(),
+      builder: (context) => const SettingsScreen(),
     );
   }
 }

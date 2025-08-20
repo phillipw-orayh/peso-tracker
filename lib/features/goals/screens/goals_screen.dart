@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:peso_tracker/shared/widgets/settings_launcher.dart';
 import '../../../shared/widgets/bottom_navigation.dart';
 import '../../../shared/providers/goal_provider.dart';
 import '../../../shared/providers/locale_provider.dart';
@@ -17,17 +18,18 @@ class GoalsScreen extends StatefulWidget {
   State<GoalsScreen> createState() => _GoalsScreenState();
 }
 
-class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin {
+class _GoalsScreenState extends State<GoalsScreen>
+    with TickerProviderStateMixin {
   late TabController _tabController;
   late ScrollController _scrollController;
-  
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
     _scrollController = ScrollController();
     _loadGoals();
-    
+
     // Set context for goal celebrations and initialize celebration service
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<GoalProvider>().setContext(context);
@@ -43,11 +45,9 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
     super.dispose();
   }
 
-
   Future<void> _loadGoals() async {
     await context.read<GoalProvider>().loadGoals();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +64,9 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => NavigationService.goToAddGoal(),
+            icon: const Icon(Icons.settings),
+            tooltip: 'Settings',
+            onPressed: () => SettingsLauncher.show(context: context),
           ),
         ],
         bottom: TabBar(
@@ -88,10 +89,17 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
             child: TabBarView(
               controller: _tabController,
               children: [
-                _buildGoalsList(goalProvider.goals, showRefreshIndicator: true, showStats: true),
-                _buildGoalsList(goalProvider.goals.where((g) => g.type == GoalType.shortTerm).toList()),
-                _buildGoalsList(goalProvider.goals.where((g) => g.type == GoalType.mediumTerm).toList()),
-                _buildGoalsList(goalProvider.goals.where((g) => g.type == GoalType.longTerm).toList()),
+                _buildGoalsList(goalProvider.goals,
+                    showRefreshIndicator: true, showStats: true),
+                _buildGoalsList(goalProvider.goals
+                    .where((g) => g.type == GoalType.shortTerm)
+                    .toList()),
+                _buildGoalsList(goalProvider.goals
+                    .where((g) => g.type == GoalType.mediumTerm)
+                    .toList()),
+                _buildGoalsList(goalProvider.goals
+                    .where((g) => g.type == GoalType.longTerm)
+                    .toList()),
               ],
             ),
           );
@@ -106,7 +114,8 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
     );
   }
 
-  Widget _buildGoalsList(List<SavingsGoal> goals, {bool showRefreshIndicator = false, bool showStats = false}) {
+  Widget _buildGoalsList(List<SavingsGoal> goals,
+      {bool showRefreshIndicator = false, bool showStats = false}) {
     if (goals.isEmpty) {
       return _buildEmptyState(showStats: showStats);
     }
@@ -133,7 +142,7 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
             ),
           );
         }
-        
+
         final goalIndex = showStats ? index - 1 : index;
         final goal = goals[goalIndex];
         return Padding(
@@ -216,7 +225,8 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
                           vertical: AppConstants.defaultPadding,
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+                          borderRadius: BorderRadius.circular(
+                              AppConstants.defaultBorderRadius),
                         ),
                       ),
                     ),
@@ -258,7 +268,7 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          
+
           // Header
           Padding(
             padding: const EdgeInsets.all(AppConstants.defaultPadding),
@@ -284,21 +294,22 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
               ],
             ),
           ),
-          
+
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: AppConstants.defaultPadding),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppConstants.defaultPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Progress Section
                   _buildProgressSection(goal),
                   const SizedBox(height: AppConstants.largePadding),
-                  
+
                   // Details Section
                   _buildDetailsSection(goal),
                   const SizedBox(height: AppConstants.largePadding),
-                  
+
                   // Action Buttons
                   _buildActionButtons(goal),
                   const SizedBox(height: AppConstants.largePadding),
@@ -346,7 +357,8 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
           LinearProgressIndicator(
             value: goal.progressPercentage / 100,
             backgroundColor: Colors.grey.shade300,
-            valueColor: const AlwaysStoppedAnimation<Color>(AppConstants.primaryColor),
+            valueColor:
+                const AlwaysStoppedAnimation<Color>(AppConstants.primaryColor),
             minHeight: 8,
           ),
           const SizedBox(height: AppConstants.smallPadding),
@@ -364,17 +376,23 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
 
   Widget _buildDetailsSection(SavingsGoal goal) {
     final daysLeft = goal.targetDate.difference(DateTime.now()).inDays;
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildDetailRow('Description', goal.description),
-        _buildDetailRow('Target Amount', '₱${goal.targetAmount.toStringAsFixed(0)}'),
-        _buildDetailRow('Saved Amount', '₱${goal.savedAmount.toStringAsFixed(0)}'),
-        _buildDetailRow('Remaining', '₱${(goal.targetAmount - goal.savedAmount).toStringAsFixed(0)}'),
-        _buildDetailRow('Days Left', daysLeft > 0 ? '$daysLeft days' : 'Overdue'),
-        _buildDetailRow('Created', '${goal.createdDate.day}/${goal.createdDate.month}/${goal.createdDate.year}'),
-        _buildDetailRow('Target Date', '${goal.targetDate.day}/${goal.targetDate.month}/${goal.targetDate.year}'),
+        _buildDetailRow(
+            'Target Amount', '₱${goal.targetAmount.toStringAsFixed(0)}'),
+        _buildDetailRow(
+            'Saved Amount', '₱${goal.savedAmount.toStringAsFixed(0)}'),
+        _buildDetailRow('Remaining',
+            '₱${(goal.targetAmount - goal.savedAmount).toStringAsFixed(0)}'),
+        _buildDetailRow(
+            'Days Left', daysLeft > 0 ? '$daysLeft days' : 'Overdue'),
+        _buildDetailRow('Created',
+            '${goal.createdDate.day}/${goal.createdDate.month}/${goal.createdDate.year}'),
+        _buildDetailRow('Target Date',
+            '${goal.targetDate.day}/${goal.targetDate.month}/${goal.targetDate.year}'),
       ],
     );
   }
@@ -423,7 +441,8 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 12),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+                borderRadius:
+                    BorderRadius.circular(AppConstants.defaultBorderRadius),
               ),
             ),
           ),
@@ -437,14 +456,16 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
                 Navigator.pop(context);
                 _deleteGoal(goal);
               },
-              icon: const Icon(Icons.delete_outline, color: AppConstants.errorColor),
+              icon: const Icon(Icons.delete_outline,
+                  color: AppConstants.errorColor),
               label: const Text('Delete Goal'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppConstants.errorColor,
                 side: const BorderSide(color: AppConstants.errorColor),
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+                  borderRadius:
+                      BorderRadius.circular(AppConstants.defaultBorderRadius),
                 ),
               ),
             ),
@@ -455,7 +476,7 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
 
   void _showAddSavingsDialog(SavingsGoal goal) {
     final amountController = TextEditingController();
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -467,7 +488,8 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
             const SizedBox(height: 16),
             TextField(
               controller: amountController,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               decoration: const InputDecoration(
                 labelText: 'Amount',
                 prefixText: '₱ ',
@@ -512,7 +534,8 @@ class _GoalsScreenState extends State<GoalsScreen> with TickerProviderStateMixin
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Delete Goal'),
-        content: Text('Are you sure you want to delete "${goal.title}"? This action cannot be undone.'),
+        content: Text(
+            'Are you sure you want to delete "${goal.title}"? This action cannot be undone.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),

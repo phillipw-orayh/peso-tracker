@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../shared/providers/gamification_provider.dart';
-import '../../../shared/models/user_data.dart';
-import '../../../core/constants/app_constants.dart';
-import '../../../core/services/database_service.dart';
+import '../providers/gamification_provider.dart';
+import '../models/user_data.dart';
+import '../../core/constants/app_constants.dart';
+import '../../core/services/database_service.dart';
 
 class UserManagementScreen extends StatefulWidget {
   const UserManagementScreen({super.key});
@@ -47,7 +47,9 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
         elevation: 0,
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator(color: AppConstants.primaryColor))
+          ? const Center(
+              child:
+                  CircularProgressIndicator(color: AppConstants.primaryColor))
           : Padding(
               padding: const EdgeInsets.all(AppConstants.defaultPadding),
               child: Column(
@@ -70,9 +72,9 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
                       color: Colors.grey.shade600,
                     ),
                   ),
-                  
+
                   const SizedBox(height: AppConstants.largePadding),
-                  
+
                   // Create New User Button
                   SizedBox(
                     width: double.infinity,
@@ -85,14 +87,15 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+                          borderRadius: BorderRadius.circular(
+                              AppConstants.defaultBorderRadius),
                         ),
                       ),
                     ),
                   ),
-                  
+
                   const SizedBox(height: AppConstants.largePadding),
-                  
+
                   // Users List
                   if (_users.isEmpty)
                     _buildEmptyState()
@@ -166,21 +169,25 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
   Widget _buildUserCard(UserData user) {
     final gamificationProvider = context.watch<GamificationProvider>();
     final isCurrentUser = gamificationProvider.currentUser?.id == user.id;
-    
+
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: isCurrentUser ? AppConstants.primaryColor.withOpacity(0.1) : Colors.white,
+        color: isCurrentUser
+            ? AppConstants.primaryColor.withOpacity(0.1)
+            : Colors.white,
         borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
         border: Border.all(
-          color: isCurrentUser ? AppConstants.primaryColor : Colors.grey.shade200,
+          color:
+              isCurrentUser ? AppConstants.primaryColor : Colors.grey.shade200,
           width: isCurrentUser ? 2 : 1,
         ),
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.all(16),
         leading: CircleAvatar(
-          backgroundColor: isCurrentUser ? AppConstants.primaryColor : Colors.grey.shade400,
+          backgroundColor:
+              isCurrentUser ? AppConstants.primaryColor : Colors.grey.shade400,
           radius: 24,
           child: Text(
             user.name.isNotEmpty ? user.name[0].toUpperCase() : 'U',
@@ -198,7 +205,8 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
-                color: isCurrentUser ? AppConstants.primaryColor : Colors.black87,
+                color:
+                    isCurrentUser ? AppConstants.primaryColor : Colors.black87,
               ),
             ),
             if (isCurrentUser) ...[
@@ -333,7 +341,8 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
   }
 
   void _showUserDialog(UserData? existingUser) {
-    final nameController = TextEditingController(text: existingUser?.name ?? '');
+    final nameController =
+        TextEditingController(text: existingUser?.name ?? '');
     final incomeController = TextEditingController(
       text: existingUser?.monthlyIncome.toString() ?? '',
     );
@@ -442,9 +451,9 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
           longestStreak: 0,
           lastActiveDate: DateTime.now(),
         );
-        
+
         await DatabaseService.createUser(user);
-        
+
         // Switch to new user if it's the first user
         if (_users.isEmpty) {
           await context.read<GamificationProvider>().switchUser(user.id);
@@ -456,9 +465,9 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
           monthlyIncome: income,
           monthlyBudget: budget,
         );
-        
+
         await DatabaseService.updateUser(user);
-        
+
         // Update current user if editing the active user
         final gamificationProvider = context.read<GamificationProvider>();
         if (gamificationProvider.currentUser?.id == user.id) {
@@ -471,7 +480,7 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            existingUser == null 
+            existingUser == null
                 ? 'User "${user.name}" created successfully'
                 : 'User "${user.name}" updated successfully',
           ),
