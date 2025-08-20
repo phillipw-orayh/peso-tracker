@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peso_tracker/shared/widgets/settings_launcher.dart';
 import 'package:provider/provider.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../shared/providers/challenge_provider.dart';
@@ -17,7 +18,8 @@ class ChallengesScreen extends StatefulWidget {
   State<ChallengesScreen> createState() => _ChallengesScreenState();
 }
 
-class _ChallengesScreenState extends State<ChallengesScreen> with TickerProviderStateMixin {
+class _ChallengesScreenState extends State<ChallengesScreen>
+    with TickerProviderStateMixin {
   late TabController _tabController;
   ScrollController? _scrollController;
 
@@ -26,8 +28,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
     _scrollController = ScrollController();
-    
-    
+
     // Set context for celebrations and initialize celebration service
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ChallengeProvider>().setContext(context);
@@ -42,8 +43,6 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
     CelebrationService.dispose();
     super.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +59,9 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () => context.read<ChallengeProvider>().refreshChallenges(),
+            icon: const Icon(Icons.settings),
+            tooltip: 'Settings',
+            onPressed: () => SettingsLauncher.show(context: context),
           ),
         ],
         bottom: TabBar(
@@ -101,7 +101,8 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
           );
         },
       ),
-      bottomNavigationBar: const BottomNavigation(currentIndex: 3), // Back to Profile
+      bottomNavigationBar:
+          const BottomNavigation(currentIndex: 3), // Back to Profile
     );
   }
 
@@ -121,7 +122,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
                 child: ChallengeStatsCard(),
               ),
             ),
-          
+
           // Content with padding
           Padding(
             padding: const EdgeInsets.all(AppConstants.defaultPadding),
@@ -130,44 +131,48 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
               children: [
                 // Active Challenges Section
                 _buildSectionHeader('Active Challenges', Icons.timer),
-          const SizedBox(height: AppConstants.smallPadding),
-          Consumer<ChallengeProvider>(
-            builder: (context, challengeProvider, child) {
-              final activeChallenges = challengeProvider.activeChallenges;
-              
-              if (activeChallenges.isEmpty) {
-                return _buildEmptyActiveState();
-              }
-              
-              return Column(
-                children: activeChallenges.map((userChallenge) {
-                  final challenge = challengeProvider.getChallengeById(userChallenge.challengeId);
-                  if (challenge == null) return const SizedBox.shrink();
-                  
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: AppConstants.smallPadding),
-                    child: ChallengeCard(
-                      challenge: challenge,
-                      userChallenge: userChallenge,
-                      isEnrolled: true,
-                      progress: challengeProvider.getChallengeProgress(challenge.id),
-                      onToggle: () => _toggleChallengeEnrollment(challenge.id),
-                    ),
-                  );
-                }).toList(),
-              );
-            },
-          ),
-          
-          const SizedBox(height: AppConstants.largePadding),
-          
-          // Badges Section
-          _buildSectionHeader('Earned Badges', Icons.emoji_events),
-          const SizedBox(height: AppConstants.smallPadding),
-          const BadgesSection(),
-          
-          const SizedBox(height: AppConstants.largePadding),
-          
+                const SizedBox(height: AppConstants.smallPadding),
+                Consumer<ChallengeProvider>(
+                  builder: (context, challengeProvider, child) {
+                    final activeChallenges = challengeProvider.activeChallenges;
+
+                    if (activeChallenges.isEmpty) {
+                      return _buildEmptyActiveState();
+                    }
+
+                    return Column(
+                      children: activeChallenges.map((userChallenge) {
+                        final challenge = challengeProvider
+                            .getChallengeById(userChallenge.challengeId);
+                        if (challenge == null) return const SizedBox.shrink();
+
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: AppConstants.smallPadding),
+                          child: ChallengeCard(
+                            challenge: challenge,
+                            userChallenge: userChallenge,
+                            isEnrolled: true,
+                            progress: challengeProvider
+                                .getChallengeProgress(challenge.id),
+                            onToggle: () =>
+                                _toggleChallengeEnrollment(challenge.id),
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  },
+                ),
+
+                const SizedBox(height: AppConstants.largePadding),
+
+                // Badges Section
+                _buildSectionHeader('Earned Badges', Icons.emoji_events),
+                const SizedBox(height: AppConstants.smallPadding),
+                const BadgesSection(),
+
+                const SizedBox(height: AppConstants.largePadding),
+
                 // Recent Completions
                 _buildSectionHeader('Recent Completions', Icons.check_circle),
                 const SizedBox(height: AppConstants.smallPadding),
@@ -190,17 +195,20 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
       itemCount: challenges.length,
       itemBuilder: (context, index) {
         final challenge = challenges[index];
-        
+
         return Consumer<ChallengeProvider>(
           builder: (context, challengeProvider, child) {
-            final isEnrolled = challengeProvider.isEnrolledInChallenge(challenge.id);
+            final isEnrolled =
+                challengeProvider.isEnrolledInChallenge(challenge.id);
             final userChallenge = challengeProvider.enrolledChallenges
                 .where((uc) => uc.challengeId == challenge.id)
                 .firstOrNull;
-            final progress = challengeProvider.getChallengeProgress(challenge.id);
-            
+            final progress =
+                challengeProvider.getChallengeProgress(challenge.id);
+
             return Padding(
-              padding: const EdgeInsets.only(bottom: AppConstants.defaultPadding),
+              padding:
+                  const EdgeInsets.only(bottom: AppConstants.defaultPadding),
               child: ChallengeCard(
                 challenge: challenge,
                 userChallenge: userChallenge,
@@ -306,17 +314,17 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
   Widget _buildRecentCompletions() {
     return Consumer<ChallengeProvider>(
       builder: (context, challengeProvider, child) {
-        final completedChallenges = challengeProvider.completedChallenges
-            .take(3)
-            .toList();
-        
+        final completedChallenges =
+            challengeProvider.completedChallenges.take(3).toList();
+
         if (completedChallenges.isEmpty) {
           return Container(
             width: double.infinity,
             padding: const EdgeInsets.all(AppConstants.defaultPadding),
             decoration: BoxDecoration(
               color: Colors.grey.shade50,
-              borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+              borderRadius:
+                  BorderRadius.circular(AppConstants.defaultBorderRadius),
             ),
             child: Text(
               'Complete some challenges to see them here!',
@@ -328,19 +336,22 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
             ),
           );
         }
-        
+
         return Column(
           children: completedChallenges.map((userChallenge) {
-            final challenge = challengeProvider.getChallengeById(userChallenge.challengeId);
+            final challenge =
+                challengeProvider.getChallengeById(userChallenge.challengeId);
             if (challenge == null) return const SizedBox.shrink();
-            
+
             return Container(
               margin: const EdgeInsets.only(bottom: AppConstants.smallPadding),
               padding: const EdgeInsets.all(AppConstants.defaultPadding),
               decoration: BoxDecoration(
                 color: AppConstants.successColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
-                border: Border.all(color: AppConstants.successColor.withOpacity(0.2)),
+                borderRadius:
+                    BorderRadius.circular(AppConstants.defaultBorderRadius),
+                border: Border.all(
+                    color: AppConstants.successColor.withOpacity(0.2)),
               ),
               child: Row(
                 children: [
@@ -393,7 +404,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
 
   void _toggleChallengeEnrollment(String challengeId) {
     final challengeProvider = context.read<ChallengeProvider>();
-    
+
     if (challengeProvider.isEnrolledInChallenge(challengeId)) {
       _showUnenrollDialog(challengeId);
     } else {
@@ -405,9 +416,9 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
   void _showUnenrollDialog(String challengeId) {
     final challengeProvider = context.read<ChallengeProvider>();
     final challenge = challengeProvider.getChallengeById(challengeId);
-    
+
     if (challenge == null) return;
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -432,7 +443,8 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
                 ),
               );
             },
-            style: TextButton.styleFrom(foregroundColor: AppConstants.errorColor),
+            style:
+                TextButton.styleFrom(foregroundColor: AppConstants.errorColor),
             child: const Text('Leave'),
           ),
         ],
@@ -443,9 +455,9 @@ class _ChallengesScreenState extends State<ChallengesScreen> with TickerProvider
   void _showEnrollmentSuccess(String challengeId) {
     final challengeProvider = context.read<ChallengeProvider>();
     final challenge = challengeProvider.getChallengeById(challengeId);
-    
+
     if (challenge == null) return;
-    
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(

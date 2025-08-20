@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/foundation.dart';
 import '../../shared/models/expense.dart';
 import '../../shared/models/savings_goal.dart';
