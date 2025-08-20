@@ -6,11 +6,11 @@ import '../../features/expense/screens/add_expense_screen.dart';
 import '../../features/goals/screens/goals_screen.dart';
 import '../../features/goals/screens/add_goal_screen.dart';
 import '../../features/goals/screens/edit_goal_screen.dart';
-import '../../features/profile/screens/profile_screen.dart';
 import '../../features/gamification/screens/challenges_screen.dart';
 
 class NavigationService {
-  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
 
   static final GoRouter router = GoRouter(
     navigatorKey: navigatorKey,
@@ -51,11 +51,6 @@ class NavigationService {
             ),
           ),
         ],
-      ),
-      GoRoute(
-        path: '/profile',
-        name: 'profile',
-        builder: (context, state) => const ProfileScreen(),
       ),
       GoRoute(
         path: '/challenges',

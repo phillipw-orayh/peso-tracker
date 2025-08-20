@@ -15,14 +15,18 @@ class GoalStatsCard extends StatelessWidget {
         final goals = goalProvider.goals;
         final activeGoals = goals.where((g) => !g.isCompleted).toList();
         final completedGoals = goals.where((g) => g.isCompleted).toList();
-        final totalSaved = goals.fold<double>(0, (sum, goal) => sum + goal.savedAmount);
-        final totalTarget = goals.fold<double>(0, (sum, goal) => sum + goal.targetAmount);
-        final overallProgress = totalTarget > 0 ? (totalSaved / totalTarget) * 100 : 0.0;
+        final totalSaved =
+            goals.fold<double>(0, (sum, goal) => sum + goal.savedAmount);
+        final totalTarget =
+            goals.fold<double>(0, (sum, goal) => sum + goal.targetAmount);
+        final overallProgress =
+            totalTarget > 0 ? (totalSaved / totalTarget) * 100 : 0.0;
 
         return Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+            borderRadius:
+                BorderRadius.circular(AppConstants.defaultBorderRadius),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.1),
@@ -46,7 +50,7 @@ class GoalStatsCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      locale.getLocalizedText('goal_statistics'),
+                      locale.getLocalizedText('Goal Statistics'),
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -55,16 +59,17 @@ class GoalStatsCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: AppConstants.defaultPadding),
-                
+
                 // Stats Grid
                 if (goals.isNotEmpty) ...[
                   // Overall Progress
-                  _buildOverallProgress(overallProgress, totalSaved, totalTarget),
-                  
+                  _buildOverallProgress(
+                      overallProgress, totalSaved, totalTarget),
+
                   const SizedBox(height: AppConstants.defaultPadding),
-                  
+
                   // Stats Row
                   Row(
                     children: [
@@ -96,9 +101,9 @@ class GoalStatsCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  
+
                   const SizedBox(height: AppConstants.defaultPadding),
-                  
+
                   // Goal Type Breakdown
                   _buildGoalTypeBreakdown(goals),
                 ] else
@@ -145,7 +150,8 @@ class GoalStatsCard extends StatelessWidget {
           LinearProgressIndicator(
             value: progress / 100,
             backgroundColor: Colors.grey.shade300,
-            valueColor: const AlwaysStoppedAnimation<Color>(AppConstants.primaryColor),
+            valueColor:
+                const AlwaysStoppedAnimation<Color>(AppConstants.primaryColor),
             minHeight: 8,
           ),
           const SizedBox(height: 8),
@@ -219,9 +225,12 @@ class GoalStatsCard extends StatelessWidget {
   }
 
   Widget _buildGoalTypeBreakdown(List<SavingsGoal> goals) {
-    final shortTermGoals = goals.where((g) => g.type == GoalType.shortTerm).length;
-    final mediumTermGoals = goals.where((g) => g.type == GoalType.mediumTerm).length;
-    final longTermGoals = goals.where((g) => g.type == GoalType.longTerm).length;
+    final shortTermGoals =
+        goals.where((g) => g.type == GoalType.shortTerm).length;
+    final mediumTermGoals =
+        goals.where((g) => g.type == GoalType.mediumTerm).length;
+    final longTermGoals =
+        goals.where((g) => g.type == GoalType.longTerm).length;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -241,7 +250,8 @@ class GoalStatsCard extends StatelessWidget {
               child: _buildTypeIndicator('Short', shortTermGoals, Colors.green),
             ),
             Expanded(
-              child: _buildTypeIndicator('Medium', mediumTermGoals, Colors.orange),
+              child:
+                  _buildTypeIndicator('Medium', mediumTermGoals, Colors.orange),
             ),
             Expanded(
               child: _buildTypeIndicator('Long', longTermGoals, Colors.purple),

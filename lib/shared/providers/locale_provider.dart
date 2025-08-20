@@ -12,7 +12,8 @@ class LocaleProvider extends ChangeNotifier {
   bool get isEnglish => _currentLocale.languageCode == 'en';
 
   LocaleProvider() {
-    _loadSavedLocale();
+    // Defer initialization to avoid calling notifyListeners during provider creation
+    Future.microtask(() => _loadSavedLocale());
   }
 
   void _loadSavedLocale() {

@@ -118,11 +118,16 @@ class DatabaseService {
   }
 
   static Future<void> saveUserData(UserData userData) async {
-    await _userBox.put('current_user', userData);
+    await _userBox.put(userData.id, userData);
+    await setCurrentUser(userData.id);
   }
 
   static UserData? getCurrentUser() {
-    return _userBox.get('current_user');
+    final currentUserId = getCurrentUserId();
+    if (currentUserId != null && currentUserId.isNotEmpty) {
+      return getUserById(currentUserId);
+    }
+    return null;
   }
 
   static Future<void> saveSetting(String key, dynamic value) async {
@@ -310,9 +315,9 @@ class DatabaseService {
       int corruptedExpenses = 0;
       for (final expense in _expenseBox.values) {
         try {
-          // Try to access all fields
-          final _ = expense.amount + 0;
-          final __ = expense.dateTime.millisecondsSinceEpoch;
+          // Try to access all fields to test for corruption
+          expense.amount + 0;
+          expense.dateTime.millisecondsSinceEpoch;
         } catch (e) {
           corruptedExpenses++;
         }

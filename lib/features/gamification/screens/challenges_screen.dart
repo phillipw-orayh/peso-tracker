@@ -10,6 +10,7 @@ import '../widgets/challenge_stats_card.dart';
 import '../widgets/badges_section.dart';
 import '../../../core/services/celebration_service.dart';
 import '../../../shared/widgets/bottom_navigation.dart';
+import 'badges_screen.dart';
 
 class ChallengesScreen extends StatefulWidget {
   const ChallengesScreen({super.key});
@@ -123,6 +124,9 @@ class _ChallengesScreenState extends State<ChallengesScreen>
               ),
             ),
 
+          // Add top padding
+          const SizedBox(height: AppConstants.defaultPadding),
+
           // Content with padding
           Padding(
             padding: const EdgeInsets.all(AppConstants.defaultPadding),
@@ -167,9 +171,23 @@ class _ChallengesScreenState extends State<ChallengesScreen>
                 const SizedBox(height: AppConstants.largePadding),
 
                 // Badges Section
-                _buildSectionHeader('Earned Badges', Icons.emoji_events),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildSectionHeader('Earned Badges', Icons.emoji_events),
+                    TextButton(
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BadgesScreen(),
+                        ),
+                      ),
+                      child: const Text('View All'),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: AppConstants.smallPadding),
-                const BadgesSection(),
+                _buildBadgesOverview(),
 
                 const SizedBox(height: AppConstants.largePadding),
 
@@ -267,7 +285,7 @@ class _ChallengesScreenState extends State<ChallengesScreen>
           ),
           const SizedBox(height: AppConstants.smallPadding),
           Text(
-            'Tap on Daily, Weekly, or Monthly tabs to enroll in challenges!',
+            'Swipe right to choose new challenges in Daily, Weekly, or Monthly tabs!',
             style: TextStyle(
               fontSize: 12,
               color: Colors.grey.shade500,
@@ -478,6 +496,169 @@ class _ChallengesScreenState extends State<ChallengesScreen>
           },
         ),
       ),
+    );
+  }
+
+  Widget _buildBadgesOverview() {
+    return Consumer<ChallengeProvider>(
+      builder: (context, challengeProvider, child) {
+        final earnedBadges = challengeProvider.earnedBadges;
+        
+        if (earnedBadges.isEmpty) {
+          return Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(AppConstants.defaultPadding),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade50,
+              borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+              border: Border.all(color: Colors.grey.shade200),
+            ),
+            child: Column(
+              children: [
+                Icon(
+                  Icons.emoji_events_outlined,
+                  size: 48,
+                  color: Colors.grey.shade400,
+                ),
+                const SizedBox(height: AppConstants.smallPadding),
+                Text(
+                  'No badges earned yet',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade600,
+                  ),
+                ),
+                const SizedBox(height: AppConstants.smallPadding),
+                Text(
+                  'Complete challenges and reach milestones to earn badges!',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey.shade500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: AppConstants.smallPadding),
+                ElevatedButton(
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const BadgesScreen(),
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppConstants.primaryColor,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: const Text('Explore Badges'),
+                ),
+              ],
+            ),
+          );
+        }
+
+        // Show first few earned badges with overview
+        return Column(
+          children: [
+            // Show up to 3 recent badges
+            ...earnedBadges.take(3).map((badge) => Container(
+              margin: const EdgeInsets.only(bottom: AppConstants.smallPadding),
+              padding: const EdgeInsets.all(AppConstants.defaultPadding),
+              decoration: BoxDecoration(
+                color: AppConstants.successColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+                border: Border.all(
+                  color: AppConstants.successColor.withOpacity(0.2),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      color: AppConstants.successColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.emoji_events,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                  const SizedBox(width: AppConstants.defaultPadding),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          badge.name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          badge.description,
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.verified,
+                    color: AppConstants.successColor,
+                    size: 20,
+                  ),
+                ],
+              ),
+            )),
+            
+            // Summary and link
+            if (earnedBadges.length > 3) ...[
+              const SizedBox(height: AppConstants.smallPadding),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(AppConstants.smallPadding),
+                decoration: BoxDecoration(
+                  color: AppConstants.primaryColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(AppConstants.defaultBorderRadius),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '+${earnedBadges.length - 3} more badges earned',
+                      style: TextStyle(
+                        color: AppConstants.primaryColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BadgesScreen(),
+                        ),
+                      ),
+                      child: Text(
+                        'View All →',
+                        style: TextStyle(
+                          color: AppConstants.primaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ],
+        );
+      },
     );
   }
 }
