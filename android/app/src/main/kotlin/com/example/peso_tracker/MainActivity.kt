@@ -1,0 +1,5 @@
+package com.example.peso_tracker
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity()
