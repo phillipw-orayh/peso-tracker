@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #4CAF50;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: 'Poppins', sans-serif;
+      }
+      .font-currency {
+        font-family: 'JetBrains Mono', monospace;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-gray-50">
+<div class="relative flex size-full min-h-screen flex-col bg-white justify-between group/design-root overflow-x-hidden" style="--select-button-svg: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27rgb(100,135,101)%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z%27%3e%3c/path%3e%3c/svg%3e');">
+<div class="sticky top-0 z-10 bg-white shadow-sm">
+<div class="flex items-center p-4">
+<button class="text-gray-700 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-100">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-gray-900 text-xl font-semibold flex-1 text-center pr-10">Create Goal</h1>
+</div>
+</div>
+<main class="flex-1 overflow-y-auto p-4">
+<section>
+<h2 class="text-gray-900 text-lg font-semibold leading-tight tracking-tight px-4 pb-3">Choose a Goal Type</h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2 cursor-pointer group">
+<div class="relative w-full overflow-hidden rounded-xl shadow-sm ring-2 ring-transparent ring-offset-2 transition-all group-hover:ring-green-500">
+<img alt="Travel" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByTfYKEPJ1nTzV69QQDipJ646HmDGktcYAqHV4AORIDpbRamyO6tLr08gcLHRWgHSIYkNat-YtTbzC2RXVDHfmYAbsn8Ag4iht0-VADvQX-GJTnRntgSB4XMjpSqlZai4X2yVipofrpULnUVWMFocSbr5HZbIBgw0XPvvImF-LjEl-AGTIh2nfZ8wq4HYf035_k1X9pcBr2mpSV9XYho8cGYTHXphzvvgK6jKlQiGhivCf3Dq3BnH3DLkM9tEpPoT2FBAR9jiGqCAl"/>
+<div class="absolute inset-0 bg-blue-900 bg-opacity-20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl opacity-80">flight_takeoff</span>
+</div>
+</div>
+<div>
+<p class="text-gray-900 text-base font-medium">Travel</p>
+<p class="text-gray-500 text-sm">Ocean Blue</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 cursor-pointer group">
+<div class="relative w-full overflow-hidden rounded-xl shadow-sm ring-2 ring-transparent ring-offset-2 transition-all group-hover:ring-green-500">
+<img alt="Electronics" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI0lbAj45c0FPfYUj_c7sx4oXh7eJm5wQlvUgWZGEIYkbUCP1of43sDS7FsOXDdu_ezslDOZ8hOAw6TEPzd4trjuf776if0OQnWngTRqdI3TFysFDF423tAmJtfHVkgI-zsOYMVKp8C8VaxLo54ch6gTT5EbrT0QLkr36GGVFk5rdGhvVQVJhI4m1bFMaB_3IDxhU9E3ftxy4FOORDqHcGKm4g-RFaBh2euB4bTOuAd7sR8xaKm5TIY5IPgRdfraDLy28BXKT9MO3g"/>
+<div class="absolute inset-0 bg-gray-800 bg-opacity-30 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl opacity-80">devices</span>
+</div>
+</div>
+<div>
+<p class="text-gray-900 text-base font-medium">Electronics</p>
+<p class="text-gray-500 text-sm">Tech Gradient</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 cursor-pointer group">
+<div class="relative w-full overflow-hidden rounded-xl shadow-sm ring-2 ring-transparent ring-offset-2 transition-all group-hover:ring-green-500">
+<img alt="Emergency" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmMrz_kLOtN5nChXpTXLlxxIqNFNcOYmgs6Xvxw3M-oxgxPEQ4yFqIXopRgSIQ1-m0ni2Bn7TAOyfXcqXGO1WwUj6onr3e9QvUHuUk44KrcSmSNzVwLQltK4gOvwm8mLnMlUDFuaBanulwGESJCUcbMiY8V_gj2V1KOxc8oVp02DQWi0Ov0mcZYeFsRjYK8973y0h3WibKBKT1-PplZgJY7yFP3u-IuMMFCsYt9qnzZBNXlSd4w3aCprU38FOGH-csqdG8aXwwhA6q"/>
+<div class="absolute inset-0 bg-green-900 bg-opacity-20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl opacity-80">health_and_safety</span>
+</div>
+</div>
+<div>
+<p class="text-gray-900 text-base font-medium">Emergency</p>
+<p class="text-gray-500 text-sm">Green Shield</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 cursor-pointer group">
+<div class="relative w-full overflow-hidden rounded-xl shadow-sm ring-2 ring-transparent ring-offset-2 transition-all group-hover:ring-green-500">
+<img alt="Education" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1wW-LNiT9CoHihOtSd4mCuoIms2So1c9jawFwJPt5VdGV1A1ySLYCp44yvUIm_LkUrCgzdlvpZV6oWlc9NiLocCnK75Y5qX8aFgtwqidIaqj9-Qnsz7EnfIvR0p0B5qZv_BvCjW0merJyvro1omWnfw_JVA6fG4R-vnJ8NTP42-eFW7YyfKZasuYMwgMUvlDSMIahzOc-pzgSZ-lGnR8ZJDl_eemVfD65hClhrqQWxPxGdKSgA8ZVNugUYIie-em2mX2B4LyZzW8V"/>
+<div class="absolute inset-0 bg-purple-900 bg-opacity-20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl opacity-80">school</span>
+</div>
+</div>
+<div>
+<p class="text-gray-900 text-base font-medium">Education</p>
+<p class="text-gray-500 text-sm">Wise Purple</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 cursor-pointer group">
+<div class="relative w-full overflow-hidden rounded-xl shadow-sm ring-2 ring-transparent ring-offset-2 transition-all group-hover:ring-green-500">
+<img alt="Home" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpg7URQvPbdQmTb0_EioNSh6RZcnJkeqHtvU-HBzoueFXtEVSvTheh5IM6s1zJsAuXUgvaLFjEpZ2MFkkbOHw8iU72pp25JvWE0vQIt0CflybqzH15kJt32P4afzqthu1IDg4HfH2tdWPalOloqAPOvU2_tbq537nHSc4wumgkN_zST_90wi6tU-ylGL7bQynzxXBLo6My05L5oZJhh5BMeJrUNp7xt7Xht-a_jDlAJYPirpBn3CxWtX4ZREZuAnSQ_OYXUXbJwfWE"/>
+<div class="absolute inset-0 bg-orange-900 bg-opacity-20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl opacity-80">cottage</span>
+</div>
+</div>
+<div>
+<p class="text-gray-900 text-base font-medium">Home</p>
+<p class="text-gray-500 text-sm">Bahay Kubo Orange</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 cursor-pointer group">
+<div class="relative w-full overflow-hidden rounded-xl shadow-sm ring-2 ring-transparent ring-offset-2 transition-all group-hover:ring-green-500">
+<img alt="Business" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXXc1_WjmhoRUb_XeGwn9cKTs6F1KO11Jq6maub7_VrMD5TunsmSp_H0qhvZKk5rsPrxFE7RAKeILoVISc04uyQYT3_-h53yB6NFqkwp6krSs8sAvgo5kLMHUr6wbIE3WGqNFfn8yDw75z50Nu0iPxvjDTJynYGj9-2jtD-OBGkCdgtcz0sZA9wcxpqwcdQmNakugroHsjRtRM_-RqkeE4dUdkos8SzSmMcQICCq_4fcEjIl3jyR-IHwQEOdrwI9cygeALBnsWzEOn"/>
+<div class="absolute inset-0 bg-blue-900 bg-opacity-30 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl opacity-80">trending_up</span>
+</div>
+</div>
+<div>
+<p class="text-gray-900 text-base font-medium">Business</p>
+<p class="text-gray-500 text-sm">Professional Blue</p>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-8">
+<h2 class="text-gray-900 text-lg font-semibold leading-tight tracking-tight px-4 pb-3">Goal Details</h2>
+<div class="px-4">
+<label class="text-gray-700 text-sm font-medium" for="goal-name">Goal Name</label>
+<input class="form-input mt-1 flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl border-gray-300 bg-gray-100 text-gray-900 h-14 placeholder:text-gray-400 p-4 text-base focus:border-green-500 focus:ring-green-500" id="goal-name" placeholder="e.g., 'Baguio Trip', 'Para sa future!'" type="text"/>
+</div>
+</section>
+<section class="mt-6">
+<h3 class="text-gray-900 text-base font-semibold leading-tight tracking-tight px-4 pb-3">Smart Suggestions</h3>
+<div class="flex gap-2 p-3 flex-wrap">
+<button class="flex shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-green-100 hover:text-green-800 transition-colors">Baguio Trip (₱15k-₱25k)</button>
+<button class="flex shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-green-100 hover:text-green-800 transition-colors">iPhone 15 (₱60k-₱80k)</button>
+<button class="flex shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-green-100 hover:text-green-800 transition-colors">Emergency Fund (₱50k-₱100k)</button>
+<button class="flex shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-green-100 hover:text-green-800 transition-colors">College Tuition (₱30k-₱60k)</button>
+</div>
+</section>
+<section class="mt-4 px-4">
+<label class="text-gray-700 text-sm font-medium" for="target-amount">Target Amount</label>
+<div class="relative mt-1">
+<input class="font-currency form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl border-gray-300 bg-gray-100 text-gray-900 h-14 placeholder:text-gray-400 p-4 pl-10 text-xl focus:border-green-500 focus:ring-green-500" id="target-amount" placeholder="₱0.00" type="text"/>
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-xl text-gray-400">₱</span>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-gray-200 p-2 text-gray-600 hover:bg-gray-300">
+<span class="material-symbols-outlined text-lg">calculate</span>
+</button>
+</div>
+</section>
+<section class="mt-8">
+<h2 class="text-gray-900 text-lg font-semibold leading-tight tracking-tight px-4 pb-3">Timeline Calculator</h2>
+<div class="bg-gray-100 rounded-xl p-4 mx-4">
+<div class="flex items-center justify-between text-sm font-medium text-gray-700">
+<span>Save ₱500/week for</span>
+<span class="font-semibold text-gray-900">20 weeks</span>
+</div>
+<div class="relative h-2 w-full mt-4">
+<input class="absolute w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:h-5 [&amp;::-webkit-slider-thumb]:w-5 [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-webkit-slider-thumb]:bg-green-500" max="104" min="1" type="range" value="20"/>
+</div>
+<div class="flex justify-center mt-6">
+<div class="isolate inline-flex rounded-md shadow-sm">
+<button class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" type="button">Daily</button>
+<button class="relative -ml-px inline-flex items-center bg-green-500 px-3 py-2 text-sm font-semibold text-white ring-1 ring-inset ring-green-500 focus:z-10" type="button">Weekly</button>
+<button class="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" type="button">Monthly</button>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-8">
+<h2 class="text-gray-900 text-lg font-semibold leading-tight tracking-tight px-4 pb-3">Progress Preview</h2>
+<div class="mx-4 p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-medium text-gray-700">₱0.00</span>
+<span class="text-sm font-medium text-green-600">₱50,000</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-4">
+<div class="bg-green-500 h-4 rounded-full" style="width: 50%;"></div>
+</div>
+<div class="text-center mt-2 text-sm text-gray-500">You're halfway there! Keep it up!</div>
+</div>
+</section>
+<section class="mt-8">
+<h2 class="text-gray-900 text-lg font-semibold leading-tight tracking-tight px-4 pb-3">Motivation</h2>
+<div class="mx-4">
+<div class="flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-gray-300 px-6 py-10 text-center">
+<span class="material-symbols-outlined text-5xl text-gray-400">add_a_photo</span>
+<p class="text-gray-800 font-semibold">Add a picture of your goal</p>
+<p class="text-gray-500 text-sm">Upload a photo to keep you motivated</p>
+<button class="mt-4 flex items-center justify-center gap-2 min-w-[84px] cursor-pointer rounded-xl h-10 px-4 bg-gray-200 text-gray-800 text-sm font-semibold hover:bg-gray-300">
+<span class="material-symbols-outlined text-base">upload</span>
+<span>Upload</span>
+</button>
+</div>
+</div>
+</section>
+<section class="mt-8">
+<h2 class="text-gray-900 text-lg font-semibold leading-tight tracking-tight px-4 pb-3">Sub-Goals (Milestones)</h2>
+<div class="mx-4">
+<div class="flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-gray-300 px-6 py-10 text-center">
+<span class="material-symbols-outlined text-5xl text-gray-400">splitscreen</span>
+<p class="text-gray-800 font-semibold">Break down your goal</p>
+<p class="text-gray-500 text-sm">Add milestones for goals over ₱50,000</p>
+<button class="mt-4 flex items-center justify-center gap-2 min-w-[84px] cursor-pointer rounded-xl h-10 px-4 bg-gray-200 text-gray-800 text-sm font-semibold hover:bg-gray-300">
+<span class="material-symbols-outlined text-base">add</span>
+<span>Add Milestone</span>
+</button>
+</div>
+</div>
+</section>
+<section class="mt-8 mb-4">
+<h2 class="text-gray-900 text-lg font-semibold leading-tight tracking-tight px-4 pb-3">Reminders</h2>
+<div class="px-4">
+<label class="text-gray-700 text-sm font-medium" for="reminder-frequency">Frequency</label>
+<select class="form-select mt-1 flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl border-gray-300 bg-gray-100 text-gray-900 h-14 placeholder:text-gray-400 p-4 text-base focus:border-green-500 focus:ring-green-500" id="reminder-frequency">
+<option>Weekly</option>
+<option>Daily</option>
+<option>Monthly</option>
+<option>Every 2 weeks</option>
+</select>
+</div>
+</section>
+</main>
+<footer class="sticky bottom-0 bg-white border-t border-gray-200 p-4">
+<button class="w-full flex items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-[var(--primary-color)] text-white text-base font-bold leading-normal tracking-wide shadow-lg hover:bg-green-600 transition-colors">
+          Save Goal
+        </button>
+</footer>
+</div>
+
+</body></html>

@@ -1,5 +1,39 @@
 # IponGPT Technical Implementation Guide
 
+## Table of Contents
+
+### Overview
+- [Project Overview](#overview)
+
+### FRONT END
+1. [Home Screen (HomeScreen)](#1-home-screen-homescreen)
+2. [Refactor Expense Screen (AddExpenseScreen)](#2-refactor-expense-screen-addexpensescreen)
+3. [Expense List Screen (ExpenseListScreen)](#3-expense-list-screen-expenselistscreen)
+4. [Goals Screen (GoalsScreen)](#4-goals-screen-goalsscreen)
+5. [Add/Edit Goal Screen (AddGoalScreen, EditGoalScreen)](#5-addedit-goal-screen-addgoalscreen-editgoalscreen)
+6. [Challenges/Gamification Screen (ChallengesScreen, BadgesScreen)](#6-challengesgamification-screen-challengesscreen-badgesscreen)
+7. [Settings Screen (SettingsScreen)](#7-settings-screen-settingsscreen)
+8. [AI Coach Chat Screen (New)](#8-ai-coach-chat-screen-new)
+9. [Reports/Analytics Screen (New)](#9-reportsanalytics-screen-new)
+10. [Visual Design & Styling System](#10-visual-design--styling-system)
+
+### BACK END
+1. [State Management Migration (Provider → Riverpod)](#1-state-management-migration-provider--riverpod)
+2. [AI Financial Coach Service](#2-ai-financial-coach-service)
+3. [Security & Privacy Enhancements](#3-security--privacy-enhancements)
+4. [Database Enhancements](#4-database-enhancements)
+5. [Monetization System](#5-monetization-system)
+6. [Voice & Photo Processing](#6-voice--photo-processing)
+7. [Offline-First Architecture](#7-offline-first-architecture)
+8. [Performance & Optimization](#8-performance--optimization)
+9. [Frontend-Backend Communication & Data Flow](#9-frontend-backend-communication--data-flow)
+
+### PROJECT MANAGEMENT
+- [Implementation Timeline](#implementation-timeline)
+- [Testing Strategy](#testing-strategy)
+
+---
+
 ## Overview
 This document provides detailed technical implementation steps for transforming PesoTracker into IponGPT, organized by Front End (UI screens) and Back End (technical infrastructure) components.
 
@@ -443,18 +477,21 @@ IponGPT follows a **Filipino-centric design philosophy** that combines modern Ma
 
 ### Color Palette:
 #### **Primary Colors:**
+![Primary Color Set](../images/improvments/primary-color-set.png)
 - **Primary Green**: `#4CAF50` (Success, money growth, prosperity)
 - **Primary Blue**: `#2196F3` (Trust, stability, banking)
 - **Accent Orange**: `#FF9800` (Energy, motivation, achievements)
 - **Warning Red**: `#F44336` (Overspending, alerts, critical actions)
 
 #### **Secondary Colors:**
+![Secondary Color Set](../images/improvments/secondary-color-set.png)
 - **Warm Yellow**: `#FFC107` (Gold, coins, rewards, premium features)
 - **Purple**: `#9C27B0` (Goals, dreams, aspirations)
 - **Teal**: `#009688` (Savings, calm financial decisions)
 - **Indigo**: `#3F51B5` (Analytics, data, intelligence)
 
 #### **Neutral Colors:**
+![Neutral Gray Color Set](../images/improvments/neutral-gray-color-set.png)
 - **Dark Gray**: `#424242` (Primary text, headers)
 - **Medium Gray**: `#757575` (Secondary text, subtitles)  
 - **Light Gray**: `#BDBDBD` (Disabled elements, dividers)
@@ -462,6 +499,7 @@ IponGPT follows a **Filipino-centric design philosophy** that combines modern Ma
 - **Card Background**: `#FFFFFF` (Content cards, forms)
 
 #### **Cultural Colors:**
+![Cultural Color Set](../images/improvments/cultural-color-set.png)
 - **Sunset Orange**: `#FF7043` (Filipino sunsets, warmth)
 - **Ocean Blue**: `#0288D1` (Philippine seas, travel goals)
 - **Rice Gold**: `#FFB300` (Prosperity, harvest, abundance)

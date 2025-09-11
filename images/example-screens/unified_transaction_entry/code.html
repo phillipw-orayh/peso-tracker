@@ -1,0 +1,128 @@
+<html><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&amp;family=Inter:wght@400;500;700;900&amp;family=JetBrains+Mono:wght@400&amp;display=swap" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-green: #4CAF50;
+        --accent-orange: #FF9800;
+        --input-bg: #FAFAFA;
+      }
+      .font-poppins {
+        font-family: 'Poppins', sans-serif;
+      }
+      .font-inter {
+        font-family: 'Inter', sans-serif;
+      }
+      .font-jetbrains-mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-white">
+<div class="relative flex size-full min-h-screen flex-col justify-between group/design-root overflow-x-hidden font-inter">
+<div class="flex flex-col">
+<header class="flex items-center p-4">
+<button class="text-zinc-800">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h1 class="font-poppins text-xl font-bold text-zinc-900 flex-1 text-center pr-6">Transactions</h1>
+</header>
+<div class="border-b border-zinc-200">
+<div class="flex px-4">
+<button class="flex-1 py-3 text-center border-b-2 border-zinc-900 font-bold text-zinc-900 text-sm">Money Out</button>
+<button class="flex-1 py-3 text-center border-b-2 border-transparent text-zinc-500 text-sm">Money In</button>
+</div>
+</div>
+<main class="p-4 space-y-4">
+<div class="flex items-center space-x-4">
+<button class="flex-1 flex items-center justify-center gap-2 py-4 px-4 bg-[var(--accent-orange)] text-white rounded-full font-bold text-sm">
+<span class="material-symbols-outlined">mic</span>
+<span>Tap to speak</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-4 px-4 bg-[var(--accent-orange)] text-white rounded-full font-bold text-sm">
+<span class="material-symbols-outlined">camera_alt</span>
+</button>
+</div>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-jetbrains-mono text-3xl text-zinc-400">₱</span>
+<input class="w-full bg-[var(--input-bg)] border-none rounded-2xl h-20 pl-12 text-right pr-4 font-jetbrains-mono text-4xl text-zinc-900 placeholder:text-zinc-400 focus:ring-2 focus:ring-[var(--primary-green)]" placeholder="0.00" type="text"/>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<button class="py-2 bg-[var(--input-bg)] text-zinc-800 rounded-lg font-jetbrains-mono">₱20</button>
+<button class="py-2 bg-[var(--input-bg)] text-zinc-800 rounded-lg font-jetbrains-mono">₱50</button>
+<button class="py-2 bg-[var(--input-bg)] text-zinc-800 rounded-lg font-jetbrains-mono">₱100</button>
+<button class="py-2 bg-[var(--input-bg)] text-zinc-800 rounded-lg font-jetbrains-mono">₱200</button>
+</div>
+<h2 class="font-poppins font-bold text-lg text-zinc-900 pt-2">Category</h2>
+<div class="grid grid-cols-3 gap-3">
+<div class="flex flex-col items-center justify-center p-2 rounded-2xl border border-zinc-200 bg-white space-y-2 text-center">
+<div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500">
+<img alt="Pagkain Icon" class="w-6 h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIOxQNRTYVC_lNdAoFy8GETSWK_aEE75fiqG_STAqQqAJMDb12LHKa7eaHYeSnwW0ksLCiHZqwDaGIrfS5_aq1r6SGXetuP8wJujHAZrMuKDTwF3CS1q8iIAHLIRWPN0VLYFcmpDgunj_4lbY-yz-0bgV-dsN4AN86nCmskq9L25HPAVnBRJeVgsGOK-lM76Z1vgbfE2YWtiTCxUmhefnGkceKNlb-VQ5IMzXLcuh2uyd4GxPD5jfyhkwkNz50DHMNxNe6gNEwCKur"/>
+</div>
+<p class="text-xs font-bold text-zinc-800">Pagkain</p>
+</div>
+<div class="flex flex-col items-center justify-center p-2 rounded-2xl border border-blue-500 bg-blue-50 space-y-2 text-center">
+<div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500">
+<img alt="Transportasyon Icon" class="w-6 h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiCZbS22seRxX7Y9ILsWiPdc_IHZ3lRtyP-YE2F3fjXCo62xbKkO6qTmlewuWxAwhbCZHUAatUdOYkuCs8cfiZxtLoNZpdJK9RbOXay1l-lFQxzl-QRMwHhmWFTYmS-nY0seKFf8Z_qJFhJbh9OdmnP4J5X-C2UsSbzot-iT1k3XGbP16k1yWGFlZ1GzIGlzY6zuoDgJM6Te7T7n3NiFqKS0X8tNuTbLCEFsAHr9hA1vMW0i2gNA2zAlCLBuiS2b1K_FbaEgWDPYOZ"/>
+</div>
+<p class="text-xs font-bold text-zinc-800">Transport</p>
+</div>
+<div class="flex flex-col items-center justify-center p-2 rounded-2xl border border-zinc-200 bg-white space-y-2 text-center">
+<div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-500">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<p class="text-xs font-bold text-zinc-800">Bills</p>
+</div>
+<div class="flex flex-col items-center justify-center p-2 rounded-2xl border border-zinc-200 bg-white space-y-2 text-center">
+<div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<p class="text-xs font-bold text-zinc-800">Shopping</p>
+</div>
+<div class="flex flex-col items-center justify-center p-2 rounded-2xl border border-zinc-200 bg-white space-y-2 text-center">
+<div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-500">
+<span class="material-symbols-outlined">theaters</span>
+</div>
+<p class="text-xs font-bold text-zinc-800">Entertainment</p>
+</div>
+<div class="flex flex-col items-center justify-center p-2 rounded-2xl border border-zinc-200 bg-white space-y-2 text-center">
+<div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-500">
+<span class="material-symbols-outlined">more_horiz</span>
+</div>
+<p class="text-xs font-bold text-zinc-800">Others</p>
+</div>
+</div>
+<div class="space-y-4 pt-2">
+<select class="w-full bg-[var(--input-bg)] border-none rounded-2xl h-14 p-4 text-zinc-900 focus:ring-2 focus:ring-[var(--primary-green)] appearance-none">
+<option>Wallet</option>
+</select>
+<input class="w-full bg-[var(--input-bg)] border-none rounded-2xl h-14 p-4 text-zinc-900 placeholder:text-zinc-500 focus:ring-2 focus:ring-[var(--primary-green)]" placeholder="Description" type="text"/>
+<input class="w-full bg-[var(--input-bg)] border-none rounded-2xl h-14 p-4 text-zinc-900 placeholder:text-zinc-500 focus:ring-2 focus:ring-[var(--primary-green)]" placeholder="Today" type="text"/>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="font-bold text-zinc-900">Recurring Transaction</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-zinc-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--primary-green)]"></div>
+</label>
+</div>
+</main>
+</div>
+<footer class="p-4">
+<button class="w-full h-14 bg-[var(--primary-green)] text-white font-bold rounded-2xl">
+          Save Transaction
+        </button>
+</footer>
+</div>
+
+</body></html>

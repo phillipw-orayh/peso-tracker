@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --green: #4CAF50;
+        --blue: #2196F3;
+        --orange: #FF9800;
+        --sunset-orange: #FF7043;
+        --ocean-blue: #0288D1;
+        --rice-gold: #FFB300;
+        --bamboo-green: #388E3C;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+      }
+      .amount {
+        font-family: 'JetBrains Mono', monospace;
+      }
+      .btn-primary {
+        @apply bg-[var(--green)] text-white;
+      }
+      .btn-secondary {
+        @apply bg-gray-100 text-gray-800;
+      }
+      .card {
+        @apply bg-white rounded-xl shadow-md p-4;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#F7F9F7]">
+<div class="relative flex size-full min-h-screen flex-col justify-between group/design-root overflow-x-hidden">
+<div class="flex-grow">
+<header class="sticky top-0 bg-white/80 backdrop-blur-sm z-10 px-4 pt-4 pb-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-[var(--green)]">J</div>
+<h1 class="text-gray-800 text-lg font-bold">Kumusta, Josh!</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="material-symbols-outlined text-orange-500 text-3xl animate-pulse">local_fire_department</span>
+<span class="absolute -top-1 -right-1 text-xs font-bold text-white bg-red-500 rounded-full h-4 w-4 flex items-center justify-center">7</span>
+</div>
+<button class="text-gray-600">
+<span class="material-symbols-outlined text-3xl">settings</span>
+</button>
+</div>
+</div>
+<div class="mt-4 flex gap-4 overflow-x-auto pb-2 [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+<button class="flex flex-col items-center justify-center gap-1 text-center shrink-0">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-[var(--bamboo-green)] text-white shadow-md">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<p class="text-xs font-medium text-gray-700">All Wallets</p>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-center shrink-0">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-700">
+<span class="material-symbols-outlined">wallet</span>
+</div>
+<p class="text-xs font-medium text-gray-500">Main</p>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-center shrink-0">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-700">
+<span class="material-symbols-outlined">savings</span>
+</div>
+<p class="text-xs font-medium text-gray-500">Savings</p>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-center shrink-0">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-700">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<p class="text-xs font-medium text-gray-500">Credit</p>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-center shrink-0">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-700">
+<span class="material-symbols-outlined">add_circle</span>
+</div>
+<p class="text-xs font-medium text-gray-500">Add New</p>
+</button>
+</div>
+</header>
+<main class="p-4 space-y-6">
+<div class="text-center">
+<p class="text-sm text-gray-500">Total Balance</p>
+<p class="text-gray-800 text-4xl font-bold amount tracking-tighter">₱12,345.67</p>
+<p class="text-sm text-gray-500 mt-2 font-medium">Konting tiis, Josh! Ipon na malapit na!</p>
+</div>
+<div class="card">
+<h2 class="text-lg font-bold text-gray-800 mb-2">Money Insider</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-2">
+<p class="font-medium text-gray-600">Spending by Category</p>
+<img alt="Pie chart showing spending by category: Food, Transport, Utilities" class="w-full h-auto rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc67FmsHtoc2yp2ARcrhKgeRFV-47Eaq7sgswpMYHZj099s9SVgeBQ9kOEkLSUx_k-Mt-B0ui01b9IzMe3UDi8Z5NcfecMGpKlEKQRD7w4k3a6qruRJVuxUR5f3P3mgl0FMgKhoaU20vgzAHf4iRQ_md_na32HH1Xqnq7_QjkatLDQz75nfID1anLHNLp-eDj5VmPqBCgd7-2byr1kCRXG4KEZLE3SM3h8tbBc8SCqbS5-1sQdVsW8P_Kyq5ukaBOZB6BYfsJabbEU"/>
+</div>
+<div class="space-y-2">
+<p class="font-medium text-gray-600">Weekly Spending</p>
+<img alt="Line graph showing weekly spending trends" class="w-full h-auto rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8weIdIBhCPztbT7FFJOsSAeSXBWrxlNUya5TrR0eZ5wp_LlSJ4ITXYfPo8bvfV33elz_X9enQvz3sxma0S4oK_mVvS63p3nyoW2Rbq-yeNFeUYjdiJu1IygPwaWufEvJI6USfcptpgdAZe8ksLUsyjINODG0P-c8Ev4_IwOKIZIFCQUHoHEVJJwtaSZz_sPG00cEh7_SpOCau5f0g-ppa37qyNJ-gNE-pT0GhXC16WOpTik0J1JiPD4Af5aD991Rj5b-Lb4LIZl-D"/>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<h2 class="text-lg font-bold text-gray-800">Quick Actions</h2>
+<div class="grid grid-cols-3 gap-4 text-center">
+<div class="flex flex-col items-center gap-2">
+<button class="w-16 h-16 bg-[var(--ocean-blue)] rounded-2xl flex items-center justify-center shadow-md transform active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl">receipt_long</span>
+</button>
+<p class="text-xs font-medium text-gray-700">Add Expense</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<button class="w-16 h-16 bg-[var(--rice-gold)] rounded-2xl flex items-center justify-center shadow-md transform active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl">savings</span>
+</button>
+<p class="text-xs font-medium text-gray-700">Check Goals</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<button class="w-16 h-16 bg-[var(--sunset-orange)] rounded-2xl flex items-center justify-center shadow-md transform active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl">workspace_premium</span>
+</button>
+<p class="text-xs font-medium text-gray-700">View Challenges</p>
+</div>
+</div>
+</div>
+<div class="card">
+<h2 class="text-lg font-bold text-gray-800 mb-2">Gastos Summary</h2>
+<div class="divide-y divide-gray-100">
+<div class="flex justify-between items-center py-3">
+<p class="text-gray-600">Today</p>
+<p class="font-bold text-gray-800 amount">₱250.00</p>
+</div>
+<div class="flex justify-between items-center py-3">
+<p class="text-gray-600">This Month</p>
+<p class="font-bold text-gray-800 amount">₱4,500.00</p>
+</div>
+</div>
+</div>
+<div class="card">
+<h2 class="text-lg font-bold text-gray-800 mb-2">Top Categories</h2>
+<div class="space-y-3">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-yellow-600">restaurant</span>
+</div>
+<p class="font-medium text-gray-700 flex-grow">Food</p>
+<p class="font-bold text-gray-800 amount">₱1,800</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+<img alt="Jeepney icon" class="w-6 h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATkBR6RoPCi-uLhBUDhhpqmN9F-dpqWM3Z5gBnfv1aYL23yKNeRGWuxX_0Pm5rmTER3pgneAY4XyWUBycx9Ql6tcQcLbnmMr-GzdJYpFUkji2NjKfyB1ApoOUTCQBubS3D6bFZ3E7P1kk_apkvk3fQ5Ndok1YmtjK43whjYvIqKBzzokVDU6gbGEdNCuxxEGLzfVcHTLYVwIXYInba0sPQ-D8oQHDO8sLkY1bhyotrrzlR6PUYKk1-HelVhZlZG73ocY-DXjSyLtmS"/>
+</div>
+<p class="font-medium text-gray-700 flex-grow">Transport</p>
+<p class="font-bold text-gray-800 amount">₱1,250</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-green-600">home</span>
+</div>
+<p class="font-medium text-gray-700 flex-grow">Utilities</p>
+<p class="font-bold text-gray-800 amount">₱950</p>
+</div>
+</div>
+</div>
+<div class="card">
+<h2 class="text-lg font-bold text-gray-800 mb-4">Savings Goals</h2>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between items-center mb-1">
+<p class="font-medium text-gray-700">New Phone</p>
+<p class="text-sm font-bold text-[var(--bamboo-green)]">50%</p>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-3">
+<div class="bg-[var(--bamboo-green)] h-3 rounded-full" style="width: 50%;"></div>
+</div>
+<p class="text-xs text-gray-500 mt-1 text-right">₱25,000 / ₱50,000</p>
+</div>
+<div>
+<div class="flex justify-between items-center mb-1">
+<p class="font-medium text-gray-700">Travel Fund</p>
+<p class="text-sm font-bold text-[var(--ocean-blue)]">25%</p>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-3">
+<div class="bg-[var(--ocean-blue)] h-3 rounded-full" style="width: 25%;"></div>
+</div>
+<p class="text-xs text-gray-500 mt-1 text-right">₱5,000 / ₱20,000</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<div class="fixed bottom-0 left-0 right-0 z-20">
+<div class="absolute bottom-20 right-4">
+<button class="bg-[var(--blue)] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transform active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">smart_toy</span>
+</button>
+</div>
+<nav class="bg-white/90 backdrop-blur-sm border-t border-gray-200 flex justify-around items-center h-20 rounded-t-2xl shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center justify-center text-[var(--green)] gap-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-xs font-bold">Home</p>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 gap-1" href="#">
+<span class="material-symbols-outlined">request_quote</span>
+<p class="text-xs">Mga Gastos</p>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 gap-1 w-16" href="#">
+<div class="w-16 h-16 bg-[var(--orange)] rounded-full flex items-center justify-center shadow-lg transform active:scale-90 transition-transform -translate-y-6">
+<span class="material-symbols-outlined text-white text-4xl">add</span>
+</div>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 gap-1" href="#">
+<span class="material-symbols-outlined">flag</span>
+<p class="text-xs">Goals</p>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 gap-1" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<p class="text-xs">Hamon</p>
+</a>
+</nav>
+</div>
+</div>
+
+</body></html>

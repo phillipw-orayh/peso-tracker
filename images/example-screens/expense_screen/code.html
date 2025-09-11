@@ -1,0 +1,173 @@
+<html><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=JetBrains+Mono%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+      :root {
+        --food-color: #FF9800;
+        --transport-color: #2196F3;
+        --bills-color: #F44336;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#FAFAFA]">
+<div class="relative flex size-full min-h-screen flex-col justify-between group/design-root" style='font-family: Inter, "Noto Sans", sans-serif;'>
+<div class="flex flex-col">
+<header class="flex items-center bg-white p-4 justify-between sticky top-0 z-10 shadow-sm">
+<h1 class="text-2xl font-bold text-[#111711] flex-1 text-center">Mga Gastos</h1>
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-transparent text-[#111711] hover:bg-gray-100">
+<span class="material-symbols-outlined">
+              settings
+            </span>
+</button>
+</header>
+<div class="p-4 bg-white">
+<div class="relative">
+<input class="w-full h-12 pl-12 pr-4 rounded-xl bg-gray-100 border-transparent focus:ring-2 focus:ring-[#20df20] focus:border-transparent text-base" placeholder="Search expenses..." type="text"/>
+<div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+<span class="material-symbols-outlined">
+                search
+              </span>
+</div>
+</div>
+</div>
+<div class="bg-white px-4 pt-2 pb-4">
+<div class="flex justify-around">
+<button class="flex flex-col items-center gap-1 text-[var(--food-color)]">
+<div class="w-14 h-14 rounded-full bg-[var(--food-color)]/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">
+                  restaurant
+                </span>
+</div>
+</button>
+<button class="flex flex-col items-center gap-1 text-[var(--transport-color)]">
+<div class="w-14 h-14 rounded-full bg-[var(--transport-color)]/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">
+                  directions_bus
+                </span>
+</div>
+</button>
+<button class="flex flex-col items-center gap-1 text-[var(--bills-color)]">
+<div class="w-14 h-14 rounded-full bg-[var(--bills-color)]/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">
+                  receipt_long
+                </span>
+</div>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<div class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">
+                  cottage
+                </span>
+</div>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 px-4 py-3 bg-white">
+<div class="flex flex-col gap-1 rounded-xl p-3 bg-gray-100 text-center">
+<p class="text-xs text-gray-500 font-medium">Total</p>
+<p class="text-lg font-bold text-gray-800" style="font-family: 'JetBrains Mono', monospace;">₱1,250.00</p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-3 bg-gray-100 text-center">
+<p class="text-xs text-gray-500 font-medium">Average</p>
+<p class="text-lg font-bold text-gray-800" style="font-family: 'JetBrains Mono', monospace;">₱125.00</p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-3 bg-gray-100 text-center">
+<p class="text-xs text-gray-500 font-medium">Highest</p>
+<p class="text-lg font-bold text-gray-800" style="font-family: 'JetBrains Mono', monospace;">₱500.00</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 p-4">
+<div class="bg-white rounded-xl shadow-md p-4 flex items-center gap-4 transition-all duration-200 active:scale-95 active:shadow-lg">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-[var(--food-color)]/20 text-[var(--food-color)]">
+<img class="w-8 h-8 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqmrzG4N1xUDdILgxJ2EeB0mT974snLwTLQPZ-vwYcnmeas4M_z6VNG0XOVIl7vcNTLQ0vhCqDZl8x0eWYrNfPeBHug9VCN0FpaPV6fctltxGcfHoXanjcOxVzxjWVpYqjHpkgoXGwCJ-6oW9-ZXED5wEFzRN4Hu23FIz4y89Voh0Hq_Z4ut_hTTVXcN3RF3-sVfoOH_4ylaDDR0SIgtA0UaL3UvFB2OIaWQXqa8hl0LteV46JeV5hGO-gtKY1IsjfuiOlDq71GSnS"/>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-base text-gray-800">Jollibee</p>
+<p class="text-sm text-[var(--food-color)] font-medium">Pagkain</p>
+</div>
+<div class="text-right">
+<p class="text-lg font-bold text-gray-800" style="font-family: 'JetBrains Mono', monospace;">₱250.00</p>
+<p class="text-xs text-gray-500">Oct 26</p>
+</div>
+<img alt="Receipt thumbnail" class="w-6 h-6 rounded-sm object-cover" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="/>
+</div>
+<div class="bg-white rounded-xl shadow-md p-4 flex items-center gap-4 transition-all duration-200 active:scale-95 active:shadow-lg">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-[var(--transport-color)]/20 text-[var(--transport-color)]">
+<span class="material-symbols-outlined text-3xl">
+                directions_bus
+              </span>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-base text-gray-800">Jeepney Fare</p>
+<p class="text-sm text-[var(--transport-color)] font-medium">Transportasyon</p>
+</div>
+<div class="text-right">
+<p class="text-lg font-bold text-gray-800" style="font-family: 'JetBrains Mono', monospace;">₱50.00</p>
+<p class="text-xs text-gray-500">Oct 26</p>
+</div>
+<div class="w-6 h-6"></div>
+</div>
+<div class="bg-white rounded-xl shadow-md p-4 flex items-center gap-4 transition-all duration-200 active:scale-95 active:shadow-lg">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-[var(--bills-color)]/20 text-[var(--bills-color)]">
+<img class="w-8 h-8 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQUzYz93_qUvyHSbQo1nonRkZGrdValmg-SBybDBkErI2iLUotWeX_ZWBHEOgxtcbSLucTTe6dczUc0-VjR-DK-dGbQ58KjWNkhQ5Sft5oKWWTfbhqUiTH49S3XbAXwKCeta6CH4oIFdsK1gFeiTNVduarS8ZXZ4T_035gUzTikehhrIjRk2OM5Y8jZgs_6MfIG182JZyH-BZY28WiaFRj0_6Xre7KzDzF5THkcscgjUyRle7CTNCSJmLMyHAXz9kG2DdruUPTIKz0"/>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-base text-gray-800">Meralco Bill</p>
+<p class="text-sm text-[var(--bills-color)] font-medium">Bills</p>
+</div>
+<div class="text-right">
+<p class="text-lg font-bold text-gray-800" style="font-family: 'JetBrains Mono', monospace;">₱500.00</p>
+<p class="text-xs text-gray-500">Oct 25</p>
+</div>
+<div class="w-6 h-6"></div>
+</div>
+<div class="bg-white rounded-xl shadow-md p-4 flex items-center gap-4 transition-all duration-200 active:scale-95 active:shadow-lg">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-[var(--food-color)]/20 text-[var(--food-color)]">
+<img class="w-8 h-8 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhG67MHe2vfbE70tPLMl-WPM1AvM62WpOUG_oEQIlXN2krjgKYVUo43ARvVqUz2qp-gX-iYQ3OCAZ3J77Sj2UoTXixSNX1EHNp6yBxOXEuYx6G6IKNxAtyjFMtX3jSr2YaZuGnjSDgBn6_TRBQt9n1g6ForQTGuVSOCHtCwhW8dn4Yxcun4_u3gRR_aFBAo5FtjtGkfvkM2zrvL-4aghzXiQX1vVJEp0qBgep1rz5G7gXJ04pRVl8WEPlwB37LAGF5V9uq3NNXdDXZ"/>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-base text-gray-800">SM Mall Food Court</p>
+<p class="text-sm text-[var(--food-color)] font-medium">Pagkain</p>
+</div>
+<div class="text-right">
+<p class="text-lg font-bold text-gray-800" style="font-family: 'JetBrains Mono', monospace;">₱300.00</p>
+<p class="text-xs text-gray-500">Oct 24</p>
+</div>
+<div class="w-6 h-6"></div>
+</div>
+<div class="bg-white rounded-xl shadow-md p-4 flex items-center gap-4 transition-all duration-200 active:scale-95 active:shadow-lg">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-[var(--transport-color)]/20 text-[var(--transport-color)]">
+<img class="w-8 h-8 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrHaKy6GX0snR6gV6ZtQd0hSxkIgF7UOez2AYidjdC3r4D9C4YYk4QtuCWsH0rbOQvi59Be-tOFwve2pnV-A3zJYmpWYdrMyTY5i5kYuh0QmjQW2J7vBTlC8_oHkYRJIeh-SHmvWHeq9e47t9CqeITdXEQZOpw77_rwe7Z_l7bjVWJlZ28K4Kwb_kJATvbaEUH55ybkJSdGRpiMeQ0zS5klR0fThEvdk0UbKe295TMzTTFTs-A-VvfmTI6CdGeD376jKUT5M1Cm-w8"/>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-base text-gray-800">Gasoline</p>
+<p class="text-sm text-[var(--transport-color)] font-medium">Transportasyon</p>
+</div>
+<div class="text-right">
+<p class="text-lg font-bold text-gray-800" style="font-family: 'JetBrains Mono', monospace;">₱150.00</p>
+<p class="text-xs text-gray-500">Oct 23</p>
+</div>
+<img alt="Receipt thumbnail" class="w-6 h-6 rounded-sm object-cover" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="/>
+</div>
+</div>
+</div>
+<div class="fixed bottom-6 right-6">
+<button class="w-16 h-16 bg-[#20df20] rounded-2xl flex items-center justify-center text-white shadow-lg hover:bg-green-500 transition-colors">
+<span class="material-symbols-outlined text-4xl">
+            tune
+          </span>
+</button>
+</div>
+</div>
+
+</body></html>
