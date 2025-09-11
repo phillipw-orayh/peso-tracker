@@ -436,6 +436,228 @@ class SpendingInsightsCard extends StatelessWidget {
 
 ---
 
+## 10. Visual Design & Styling System
+
+### Overview:
+IponGPT follows a **Filipino-centric design philosophy** that combines modern Material Design principles with cultural elements, warm colors, and familiar visual language that resonates with Filipino users. The design system ensures consistency across all screens while maintaining accessibility and performance.
+
+### Color Palette:
+#### **Primary Colors:**
+- **Primary Green**: `#4CAF50` (Success, money growth, prosperity)
+- **Primary Blue**: `#2196F3` (Trust, stability, banking)
+- **Accent Orange**: `#FF9800` (Energy, motivation, achievements)
+- **Warning Red**: `#F44336` (Overspending, alerts, critical actions)
+
+#### **Secondary Colors:**
+- **Warm Yellow**: `#FFC107` (Gold, coins, rewards, premium features)
+- **Purple**: `#9C27B0` (Goals, dreams, aspirations)
+- **Teal**: `#009688` (Savings, calm financial decisions)
+- **Indigo**: `#3F51B5` (Analytics, data, intelligence)
+
+#### **Neutral Colors:**
+- **Dark Gray**: `#424242` (Primary text, headers)
+- **Medium Gray**: `#757575` (Secondary text, subtitles)  
+- **Light Gray**: `#BDBDBD` (Disabled elements, dividers)
+- **Background**: `#FAFAFA` (App background)
+- **Card Background**: `#FFFFFF` (Content cards, forms)
+
+#### **Cultural Colors:**
+- **Sunset Orange**: `#FF7043` (Filipino sunsets, warmth)
+- **Ocean Blue**: `#0288D1` (Philippine seas, travel goals)
+- **Rice Gold**: `#FFB300` (Prosperity, harvest, abundance)
+- **Bamboo Green**: `#388E3C` (Nature, sustainability, growth)
+
+### Typography System:
+#### **Font Families:**
+- **Primary**: Inter (Clean, modern, highly readable)
+- **Secondary**: Nunito Sans (Friendly, approachable for Filipino text)
+- **Display**: Poppins (Bold headers, prominent displays)
+- **Monospace**: JetBrains Mono (Numbers, amounts, data)
+
+#### **Text Styles:**
+- **Display Large**: 32px, Bold, Poppins (Screen titles, major amounts)
+- **Headline**: 24px, SemiBold, Inter (Section headers, card titles)
+- **Title**: 20px, Medium, Inter (Expense items, goal names)
+- **Body**: 16px, Regular, Inter (Descriptions, content)
+- **Caption**: 14px, Regular, Nunito Sans (Helper text, timestamps)
+- **Label**: 12px, Medium, Inter (Form labels, categories)
+
+#### **Filipino Text Considerations:**
+- **Taglish Support**: Mixed English-Filipino text spacing
+- **Long Category Names**: Ellipsis handling for "Transportasyon"
+- **Cultural Phrases**: Proper spacing for motivational text
+- **Peso Currency**: Special formatting for ₱ symbol integration
+
+### Iconography System:
+#### **Icon Styles:**
+- **Style**: Material Icons + Custom Filipino-themed icons
+- **Weight**: 400 (Regular) for most UI elements
+- **Size Standards**: 16px, 20px, 24px, 32px, 48px
+- **Format**: SVG for scalability, PNG fallbacks for complex icons
+
+#### **Category Icons:**
+- **Food & Dining**: 🍽️ Fork/knife, Rice bowl, Jeepney food cart
+- **Transportation**: 🚌 Jeepney, MRT train, Tricycle, Bus
+- **Shopping**: 🛒 Shopping bag, SM Mall icon, Market basket
+- **Bills & Utilities**: ⚡ Lightning bolt, House, WiFi symbol
+- **Healthcare**: 🏥 Cross, Stethoscope, Medicine bottle
+- **Entertainment**: 🎬 Movie camera, Karaoke mic, Festival
+- **Education**: 📚 Books, Graduation cap, School building
+- **Savings & Investment**: 💰 Piggy bank, Growth chart, Coins
+
+#### **Custom Filipino Icons:**
+- **Jeepney**: Stylized side-view jeepney for transportation
+- **Sari-sari Store**: Small store front for shopping category
+- **Bahay Kubo**: Traditional house for home/rent expenses
+- **Bangus**: Fish icon for food category
+- **Coconut**: Tropical element for savings/goals
+- **Philippine Flag Colors**: Integrated in achievement badges
+
+### Visual Components:
+#### **Cards & Containers:**
+- **Border Radius**: 12px (Rounded, friendly appearance)
+- **Elevation**: Material Design shadow levels (2dp, 4dp, 8dp)
+- **Padding**: 16px standard, 24px for major containers
+- **Margin**: 8px between items, 16px screen edges
+
+#### **Progress Indicators:**
+- **Thermometer Style**: Vertical progress for savings goals
+- **Circular Progress**: Radial progress for challenges
+- **Linear Progress**: Horizontal bars for category spending
+- **Color Gradient**: Green to yellow to red based on progress
+
+#### **Buttons & Actions:**
+- **Primary Button**: Rounded corners, 48dp height, bold text
+- **Secondary Button**: Outlined style with primary color border
+- **Floating Action Button**: 56dp diameter, prominent shadow
+- **Icon Button**: 40dp touch target, 24dp icon
+
+### Animation System:
+#### **Micro-Interactions:**
+- **Button Press**: 150ms scale down (0.95x) with bounce
+- **Card Tap**: 200ms elevation increase + subtle scale
+- **Success Actions**: Confetti animation for achievements
+- **Error States**: Gentle shake animation (3 cycles, 4px)
+
+#### **Page Transitions:**
+- **Forward Navigation**: Slide from right (300ms)
+- **Back Navigation**: Slide to right (250ms) 
+- **Modal Appearance**: Fade in + scale up (400ms)
+- **Bottom Sheets**: Slide up from bottom (350ms)
+
+#### **Content Animations:**
+- **List Items**: Staggered fade-in (50ms delays)
+- **Charts**: Progressive draw animation (800ms)
+- **Progress Bars**: Smooth fill animation (600ms)
+- **Streak Flames**: Flickering animation for active streaks
+
+#### **Cultural Animations:**
+- **Achievement Celebrations**: Filipino-themed confetti colors
+- **Goal Completion**: Fireworks with Philippine flag colors
+- **Streak Milestones**: Tropical particle effects
+- **Loading States**: Peso coin spinning animation
+
+### Cultural Design Elements:
+#### **Filipino Visual Language:**
+- **Warm Color Temperature**: Slightly warmer tones throughout
+- **Rounded Corners**: Friendly, approachable appearance
+- **Organic Shapes**: Subtle curves inspired by nature
+- **Celebration Elements**: Festive colors for achievements
+
+#### **Cultural Motifs:**
+- **Geometric Patterns**: Subtle background patterns inspired by traditional weaving
+- **Natural Elements**: Coconut palm, ocean waves in illustrations
+- **Architectural Elements**: Bahay kubo silhouettes for backgrounds
+- **Festival Colors**: Bright, celebratory colors for special occasions
+
+### Accessibility Considerations:
+#### **Color Accessibility:**
+- **WCAG AA Compliance**: 4.5:1 contrast ratio for normal text
+- **Color Blindness**: Use icons + text, not just color coding
+- **High Contrast Mode**: Alternative color scheme support
+- **Dark Mode**: Complete dark theme variant
+
+#### **Typography Accessibility:**
+- **Minimum Font Size**: 14px for body text
+- **Line Height**: 1.5x for optimal readability
+- **Touch Targets**: Minimum 44dp for interactive elements
+- **Focus Indicators**: Clear visual focus states
+
+#### **Motion Accessibility:**
+- **Reduced Motion**: Respect system accessibility settings
+- **Alternative Indicators**: Static alternatives to animations
+- **Duration Control**: Configurable animation speeds
+- **Pause Options**: Ability to pause decorative animations
+
+### Implementation Guidelines:
+#### **Theme Structure:**
+```dart
+// Material Theme Configuration
+ThemeData(
+  primarySwatch: MaterialColor(0xFF4CAF50, {
+    50: Color(0xFFE8F5E8),
+    100: Color(0xFFC8E6C9),
+    // ... color variants
+  }),
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: Color(0xFF4CAF50),
+    brightness: Brightness.light,
+  ),
+  typography: Typography.material2021(),
+  cardTheme: CardTheme(
+    elevation: 2,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+  ),
+)
+```
+
+#### **Design Tokens:**
+- **Spacing Scale**: 4px, 8px, 12px, 16px, 20px, 24px, 32px, 48px
+- **Corner Radius**: 4px, 8px, 12px, 16px, 24px
+- **Elevation Levels**: 0dp, 2dp, 4dp, 6dp, 8dp, 12dp, 16dp, 24dp
+
+#### **Asset Organization:**
+```
+assets/
+├── icons/
+│   ├── categories/          # Category-specific icons
+│   ├── filipino/           # Cultural icons
+│   └── ui/                 # Interface icons
+├── images/
+│   ├── illustrations/      # Onboarding, empty states
+│   ├── backgrounds/        # Pattern backgrounds
+│   └── achievements/       # Badge and trophy images
+└── animations/
+    ├── lottie/            # Complex animations
+    └── rive/              # Interactive animations
+```
+
+### Platform Adaptations:
+#### **iOS-Specific Adjustments:**
+- **SF Symbols**: Use iOS system icons where appropriate
+- **Navigation**: iOS-style back button behavior
+- **Haptics**: iOS Taptic Engine feedback patterns
+- **Safe Areas**: Proper notch and home indicator handling
+
+#### **Android-Specific Adjustments:**
+- **Material You**: Dynamic color support for Android 12+
+- **Navigation**: Android back gesture handling
+- **Haptics**: Android vibration patterns
+- **Edge-to-Edge**: Proper status bar and navigation bar handling
+
+### Future Enhancements:
+#### **Planned Additions:**
+- **Seasonal Themes**: Holiday-specific color variations
+- **Regional Customization**: Different cultural motifs for Luzon, Visayas, Mindanao
+- **Personal Themes**: User-customizable accent colors
+- **Accessibility Themes**: High contrast and colorblind-friendly variants
+
+→ **[Detailed Style Guide](STYLE_IMPLEMENTATION_DETAILS.md)**: Comprehensive design system documentation with code examples, asset specifications, and implementation guidelines.
+
+---
+
 # BACK END
 
 ## 1. State Management Migration (Provider → Riverpod)
@@ -645,14 +867,80 @@ Ensure full app functionality when offline with background sync when connected. 
 ## 8. Performance & Optimization
 
 ### Overview:
-Optimize app performance through image compression, database maintenance, memory management, and efficient data loading strategies.
+Comprehensive performance optimization strategies covering data flow efficiency, memory management, UI rendering, database operations, and resource utilization to ensure smooth app performance even with large datasets.
 
-### Key Optimizations:
-- Image compression while maintaining OCR quality
-- Database compaction and archiving strategies
-- Lazy loading for large datasets
-- Memory usage optimization for expense lists
-- Background task scheduling for maintenance
+### Data Flow Efficiency:
+- **Lazy Loading**: Load data only when needed to reduce initial load time
+- **Caching Strategy**: Keep frequently accessed data in memory with TTL (time-to-live)
+- **Batch Operations**: Group database operations to reduce I/O overhead
+- **Reactive Updates**: Only rebuild affected widgets, not entire screens
+- **Pagination**: Load expense/goal lists in pages (20-50 items) instead of all at once
+- **Selective Watching**: Use Riverpod's `select` to watch only needed state parts
+- **Query Debouncing**: Prevent redundant database/API calls during user typing
+
+### Memory Management:
+- **Auto-Dispose Providers**: Use `autoDispose` with delayed eviction for soft caching
+- **Resource Cleanup**: Properly dispose listeners, subscriptions, and database watchers
+- **Compact Models**: Use lightweight models for lists, load full details on demand
+- **Cache with TTL**: Implement time-based cache eviction for stale data
+- **Scoped Providers**: Limit heavy providers to specific screens/widgets that need them
+
+### UI Rendering Optimizations:
+- **Virtual Scrolling**: Use `ListView.builder` and `SliverList` with `itemExtent`
+- **Stable Keys**: Provide consistent `Key` values for list items to prevent rebuilds
+- **Layout Efficiency**: Minimize expensive operations (clipping, shadows, opacity)
+- **Const Widgets**: Use `const` constructors wherever possible for compile-time optimization
+- **Image Optimization**: Resize images to display size, use thumbnails for lists
+
+### Database Optimizations:
+- **Indexing Strategy**: Add indexes on frequently queried fields (date, category, amount)
+- **Query Projection**: Select only needed columns instead of full records
+- **Transaction Batching**: Group multiple writes in single database transaction
+- **Incremental Sync**: Sync only new/changed records rather than full datasets
+- **Database Compaction**: Schedule periodic cleanup of deleted records
+
+### Concurrency & Background Processing:
+- **Isolate Computing**: Offload heavy parsing/filtering to separate isolates
+- **Background Diffing**: Calculate list differences outside main UI thread
+- **Scheduled Maintenance**: Run database cleanup and archiving during idle times
+- **Worker Pools**: Use compute function for CPU-intensive operations
+
+### Network Optimization:
+- **Caching Headers**: Use ETags and If-None-Match to prevent unnecessary downloads
+- **Response Compression**: Enable gzip/deflate for API responses
+- **Request Deduplication**: Prevent duplicate concurrent requests to same endpoint
+- **Smart Retry**: Implement exponential backoff for transient failures
+
+### Animation Performance:
+- **Implicit Animations**: Prefer `AnimatedContainer` and `AnimatedSwitcher`
+- **Repaint Boundaries**: Isolate expensive widgets to minimize repaint areas
+- **Frame Budget**: Keep UI operations under 16ms per frame (60 FPS)
+- **GPU Acceleration**: Use hardware acceleration for complex animations
+
+### Performance Monitoring & Tools:
+- **Flutter DevTools**: Regular timeline and memory allocation inspection
+- **Heap Snapshots**: Compare memory usage before/after navigation
+- **Widget Rebuild Tracking**: Unit test selectors to ensure minimal rebuilds
+- **Performance Metrics**: Track app startup time, screen load time, interaction latency
+
+### Implementation Priority:
+1. **High Impact** (Immediate):
+   - Lazy loading for expense lists
+   - Image thumbnail generation
+   - Database indexing
+   - Provider auto-disposal
+
+2. **Medium Impact** (Phase 2):
+   - Pagination implementation
+   - Cache with TTL
+   - Query debouncing
+   - Virtual scrolling optimization
+
+3. **Optimization** (Phase 3):
+   - Isolate computing
+   - Request deduplication
+   - Advanced caching strategies
+   - Performance monitoring integration
 
 → **[Detailed Implementation Guide - Coming Soon]** (Section 8 to be added to BACKEND_IMPLEMENTATION_DETAILS_PART2.md)
 
@@ -1074,4 +1362,4 @@ class DataFlowLogger {
 
 This local-first architecture ensures IponGPT works reliably offline while providing a foundation for future cloud enhancements, maintaining the privacy-first approach that Filipino users expect for their financial data.
 
-→ **[Detailed Technical Specification Coming Soon]**: A comprehensive technical document detailing implementation specifics, API contracts, and integration patterns.
+---
