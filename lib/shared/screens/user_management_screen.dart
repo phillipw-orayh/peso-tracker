@@ -156,7 +156,7 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
             ),
             const SizedBox(height: 12),
             Text(
-              'Create your first user profile to get started with PesoTracker',
+              'Create your first user profile to get started with IponGPT',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey.shade500,

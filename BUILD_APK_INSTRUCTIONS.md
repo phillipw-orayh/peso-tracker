@@ -1,4 +1,4 @@
-# PesoTracker APK Build Instructions
+# IponGPT APK Build Instructions
 
 ## Prerequisites
 
@@ -28,13 +28,13 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 
 ### Debug APK (for testing)
 ```bash
-cd /path/to/peso_tracker
+cd /path/to/IponGPT
 flutter build apk --debug
 ```
 
 ### Release APK (for distribution)
 ```bash
-cd /path/to/peso_tracker
+cd /path/to/IponGPT
 flutter build apk --release
 ```
 
@@ -52,8 +52,8 @@ adb install build/app/outputs/flutter-apk/app-debug.apk
 Or copy the APK file to your phone and install manually.
 
 ## App Details
-- **App Name**: PesoTracker
-- **Package**: com.pesotracker.app
+- **App Name**: IponGPT
+- **Package**: com.ipongpt.ipon_gpt
 - **Min SDK**: Android 5.0 (API 21)
 - **Target SDK**: Android 14 (API 34)
 

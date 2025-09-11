@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:peso_tracker/shared/widgets/settings_launcher.dart';
+import 'package:ipon_gpt/shared/widgets/settings_launcher.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../shared/providers/challenge_provider.dart';
 import '../../../shared/providers/gamification_provider.dart';
@@ -523,7 +523,7 @@ class _BadgesScreenState extends State<BadgesScreen>
 
   List<BadgeInfo> _getSpecialBadges() {
     return [
-      BadgeInfo('early_bird', 'Early Bird', 'Join PesoTracker in its first month', 0),
+      BadgeInfo('early_bird', 'Early Bird', 'Join IponGPT in its first month', 0),
       BadgeInfo('social_butterfly', 'Social Butterfly', 'Share 5 achievements', 5),
       BadgeInfo('goal_crusher', 'Goal Crusher', 'Complete 3 savings goals', 3),
       BadgeInfo('masinop_pinoy', 'Masinop na Pinoy', 'Master of Filipino savings', 0),

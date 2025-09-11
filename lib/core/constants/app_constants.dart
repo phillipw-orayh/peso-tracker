@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppConstants {
-  static const String appName = 'PesoTracker';
+  static const String appName = 'IponGPT';
   
   static const Color primaryColor = Color(0xFF2E7D32);
   static const Color secondaryColor = Color(0xFFFFC107);

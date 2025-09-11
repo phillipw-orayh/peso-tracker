@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:peso_tracker/core/services/navigation_service.dart';
+import 'package:ipon_gpt/core/services/navigation_service.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../shared/widgets/section_header.dart';
 import '../providers/gamification_provider.dart';
@@ -183,12 +183,12 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 ListTile(
                   leading: const Icon(Icons.info_outline),
-                  title: const Text('About PesoTracker'),
+                  title: const Text('About IponGPT'),
                   subtitle: const Text('Version 1.0.0'),
                   onTap: () {
                     showAboutDialog(
                       context: context,
-                      applicationName: 'PesoTracker',
+                      applicationName: 'IponGPT',
                       applicationVersion: '1.0.0',
                       applicationIcon: const Icon(Icons.savings_outlined),
                       children: const [
@@ -204,7 +204,7 @@ class SettingsScreen extends StatelessWidget {
                   title: const Text('Licenses'),
                   onTap: () => showLicensePage(
                     context: context,
-                    applicationName: 'PesoTracker',
+                    applicationName: 'IponGPT',
                     applicationVersion: '1.0.0',
                   ),
                 ),

@@ -1,6 +1,6 @@
-# peso_tracker
+# IponGPT
 
-A new Flutter project.
+An AI-powered Filipino Financial Tracker Flutter application.
 
 ## Getting Started
 

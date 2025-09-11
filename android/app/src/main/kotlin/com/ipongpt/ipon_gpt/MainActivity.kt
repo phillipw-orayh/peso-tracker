@@ -1,4 +1,4 @@
-package com.example.peso_tracker
+package com.ipongpt.ipon_gpt
 
 import io.flutter.embedding.android.FlutterActivity
 

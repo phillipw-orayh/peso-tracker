@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-import 'package:peso_tracker/shared/widgets/settings_launcher.dart';
+import 'package:ipon_gpt/shared/widgets/settings_launcher.dart';
 import '../../../shared/widgets/bottom_navigation.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/services/navigation_service.dart';

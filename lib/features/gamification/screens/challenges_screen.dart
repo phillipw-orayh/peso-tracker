@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:peso_tracker/shared/widgets/settings_launcher.dart';
+import 'package:ipon_gpt/shared/widgets/settings_launcher.dart';
 import 'package:provider/provider.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../shared/providers/challenge_provider.dart';

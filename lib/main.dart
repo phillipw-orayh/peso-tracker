@@ -46,11 +46,11 @@ void main() async {
     }
   }
   
-  runApp(const PesoTrackerApp());
+  runApp(const IponGPTApp());
 }
 
-class PesoTrackerApp extends StatelessWidget {
-  const PesoTrackerApp({super.key});
+class IponGPTApp extends StatelessWidget {
+  const IponGPTApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class PesoTrackerApp extends StatelessWidget {
       child: Consumer<LocaleProvider>(
         builder: (context, localeProvider, child) {
           return MaterialApp.router(
-            title: 'PesoTracker',
+            title: 'IponGPT',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(

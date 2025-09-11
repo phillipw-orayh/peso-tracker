@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:peso_tracker/shared/widgets/settings_launcher.dart';
+import 'package:ipon_gpt/shared/widgets/settings_launcher.dart';
 import '../../../shared/widgets/bottom_navigation.dart';
 import '../../../shared/providers/goal_provider.dart';
 import '../../../shared/providers/locale_provider.dart';
