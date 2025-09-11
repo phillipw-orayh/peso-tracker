@@ -456,14 +456,107 @@ Migrate from Provider to Riverpod for improved compile-time safety, better testi
 ## 2. AI Financial Coach Service
 
 ### Overview:
-Implement a rule-based AI financial coach that provides contextual advice, insights, and nudges based on user spending patterns, goals, and financial behavior. Start with predefined rules and patterns for MVP.
+Implement a hybrid AI financial coach that starts with rule-based coaching for MVP and supports future integration with cloud AI services for enhanced personalization and natural language processing.
 
 ### Key Features:
-- Contextual financial advice based on spending patterns
-- Multi-language support (English, Filipino, Taglish)
-- Daily nudges and reminders
-- Goal-specific tips and encouragement
-- Pattern recognition for overspending alerts
+- **Rule-based coaching system** for immediate deployment without external dependencies
+- **Hybrid architecture** supporting local + cloud AI integration
+- **Multi-language support** (English, Filipino, Taglish) with cultural context
+- **Natural language query processing** for conversational interactions
+- **Contextual financial advice** based on spending patterns and goals
+- **Daily nudges and reminders** with personalized messaging
+- **Pattern recognition** for overspending alerts and behavioral insights
+
+### Cloud AI Integration (Future Enhancement):
+- **OpenAI GPT integration** for conversational AI and natural language understanding
+- **Enhanced personalization** through machine learning analysis of spending patterns
+- **Predictive analytics** for expense forecasting and financial planning
+- **Advanced receipt processing** using OCR and text analysis
+- **Filipino language models** for better cultural context and Taglish support
+
+### Cost Considerations:
+**OpenAI API Pricing** (as of 2024):
+- GPT-3.5 Turbo: $0.0005 per 1K input tokens, $0.0015 per 1K output tokens
+- GPT-4: $0.01 per 1K input tokens, $0.03 per 1K output tokens
+
+**Usage Estimates for IponGPT**:
+- **Average advice request**: ~200 input tokens, ~150 output tokens
+- **GPT-3.5 cost per advice**: ~$0.0004 USD (₱0.022)
+- **Monthly cost per active user**: ~₱6.60 (300 advice requests/month)
+- **10K active users**: ~₱66,000/month
+- **50K active users**: ~₱330,000/month
+
+**Cost Scaling Visualization**:
+```
+Monthly Cloud AI Costs (₱)
+
+₱700K |                                     
+₱600K |                                      
+₱500K |                              +           
+₱400K |                      +                   
+₱300K |             +                         
+₱200K |        +                               
+₱100K |   +                                    
+   ₱0 |------------------------------------------
+       0    5K   10K   25K   50K   100K   |  Users
+
+      
+Per User: ₱6.60/month
+Break-even at ₱299/month premium subscription
+```
+
+**Required Accounts & Setup**:
+- OpenAI API account with payment method
+- API key management and secure storage
+- Usage monitoring and rate limiting
+- Fallback systems for API failures
+
+**Philippines-Specific Considerations**:
+- **API Latency**: 200-400ms additional latency from PH to US servers
+- **Network Reliability**: Intermittent connectivity requires robust fallback
+- **Currency Exchange**: USD pricing affected by PHP exchange rates
+- **Data Residency**: No local data processing requirements for financial advice
+- **Regulatory Compliance**: BSP guidelines on AI usage in financial services
+
+**Risk Mitigation**:
+- **Freemium Model**: Cloud AI features for premium subscribers only
+- **Usage Limits**: Daily/monthly caps per user to control costs
+- **Local Fallback**: All functionality works offline without cloud dependency
+- **Cost Monitoring**: Real-time usage tracking with automatic shutoffs
+- **Regional CDN**: Consider Azure/AWS Asia-Pacific regions for lower latency
+
+### Alternative AI API Services:
+
+**Google Cloud AI Platform**:
+- **Pricing**: $0.0005-$0.002 per 1K tokens (similar to OpenAI)
+- **Advantages**: Better Asia-Pacific coverage, Vertex AI for custom models
+- **Filipino Support**: Limited, but supports custom language models
+- **Latency**: ~150-250ms from Philippines (better than OpenAI)
+
+**Anthropic Claude API**:
+- **Pricing**: $0.0008 per 1K input tokens, $0.0024 per 1K output tokens
+- **Advantages**: Strong safety measures, longer context windows
+- **Filipino Support**: Limited Tagalog understanding
+- **Availability**: May have regional restrictions
+
+**Azure OpenAI Service**:
+- **Pricing**: Similar to OpenAI but with enterprise SLA
+- **Advantages**: Better regional availability, data residency controls
+- **Filipino Support**: Same as OpenAI but with Azure infrastructure
+- **Latency**: ~180-300ms from Philippines via Singapore region
+
+**AWS Bedrock**:
+- **Pricing**: Varies by model (Claude, Llama, Titan)
+- **Advantages**: Multiple model options, AWS integration
+- **Filipino Support**: Depends on chosen model
+- **Regional**: Available in Asia-Pacific regions
+
+**Local/Regional Options**:
+- **Cohere API**: Multilingual capabilities, competitive pricing
+- **Hugging Face Inference API**: Open-source models, customizable
+- **Local Filipino LLMs**: Future development by Philippine tech companies
+
+**Recommendation**: Start with OpenAI for MVP due to proven performance, then evaluate Google Cloud AI or Azure OpenAI for better regional performance and cost optimization.
 
 → [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS.md#2-ai-financial-coach-service)
 
