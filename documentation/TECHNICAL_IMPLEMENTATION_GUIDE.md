@@ -449,7 +449,7 @@ Migrate from Provider to Riverpod for improved compile-time safety, better testi
 - Automatic disposal and better memory management
 - Support for computed states and complex dependency graphs
 
-→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS.md#1-state-management-migration-provider--riverpod)
+→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS_PART1.md#1-state-management-migration-provider--riverpod)
 
 ---
 
@@ -558,7 +558,7 @@ Break-even at ₱299/month premium subscription
 
 **Recommendation**: Start with OpenAI for MVP due to proven performance, then evaluate Google Cloud AI or Azure OpenAI for better regional performance and cost optimization.
 
-→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS.md#2-ai-financial-coach-service)
+→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS_PART1.md#2-ai-financial-coach-service)
 
 ---
 
@@ -574,7 +574,7 @@ Implement comprehensive security measures including biometric/PIN authentication
 - Secure data export/import functionality
 - Complete data deletion capabilities
 
-→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS.md#3-security--privacy-enhancements)
+→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS_PART1.md#3-security--privacy-enhancements)
 
 ---
 
@@ -590,7 +590,7 @@ Extend the current Hive database with new data models, encryption support, and a
 - Add backup/restore functionality with password protection
 - Performance optimization for large datasets
 
-→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS.md#4-database-enhancements)
+→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS_PART2.md#4-database-enhancements)
 
 ---
 
@@ -606,7 +606,7 @@ Implement freemium model with in-app purchases for premium features. Include fea
 - Upgrade prompts and premium feature showcases
 - Local subscription verification with receipt validation
 
-→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS.md#5-monetization-system)
+→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS_PART2.md#5-monetization-system)
 
 ---
 
@@ -622,7 +622,7 @@ Add voice input for Filipino phrases and photo receipt processing with OCR to au
 - Philippine merchant recognition and auto-categorization
 - Image optimization and compression for storage
 
-→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS.md#6-voice--photo-processing)
+→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS_PART2.md#6-voice--photo-processing)
 
 ---
 
@@ -638,7 +638,7 @@ Ensure full app functionality when offline with background sync when connected. 
 - Optimistic updates with rollback capabilities
 - Queued operations for offline actions
 
-→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS.md#7-offline-first-architecture)
+→ **[Detailed Implementation Guide - Coming Soon]** (Section 7 to be added to BACKEND_IMPLEMENTATION_DETAILS_PART2.md)
 
 ---
 
@@ -654,7 +654,7 @@ Optimize app performance through image compression, database maintenance, memory
 - Memory usage optimization for expense lists
 - Background task scheduling for maintenance
 
-→ [Detailed Implementation Guide](BACKEND_IMPLEMENTATION_DETAILS.md#8-performance--optimization)
+→ **[Detailed Implementation Guide - Coming Soon]** (Section 8 to be added to BACKEND_IMPLEMENTATION_DETAILS_PART2.md)
 
 ---
 
@@ -711,3 +711,367 @@ Optimize app performance through image compression, database maintenance, memory
 - Image processing speed
 - Memory usage optimization
 - Battery consumption monitoring
+
+---
+
+## 9. Frontend-Backend Communication & Data Flow
+
+### Overview:
+IponGPT follows a **local-first architecture** where the frontend communicates directly with local services and databases. There is no traditional backend server - instead, the "backend" consists of local services, encrypted storage, and optional cloud integrations for premium features.
+
+### Architecture Pattern:
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                           FRONTEND LAYER                            │
+├─────────────────────────────────────────────────────────────────────┤
+│  Widgets & Screens  │  Riverpod Providers  │  State Management      │
+└─────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                         SERVICE LAYER                              │
+├─────────────────────────────────────────────────────────────────────┤
+│  DatabaseService   │  SecurityService   │  AICoachService           │
+│  VoiceService      │  OCRService       │  MonetizationService       │
+└─────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                         STORAGE LAYER                              │
+├─────────────────────────────────────────────────────────────────────┤
+│  Encrypted Hive Boxes  │  Secure Storage  │  File System           │
+└─────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                      CLOUD LAYER (Optional)                        │
+├─────────────────────────────────────────────────────────────────────┤
+│  OpenAI API        │  App Store APIs    │  Analytics (Opt-in)       │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### Communication Patterns:
+
+#### 1. **Direct Service Communication**
+The frontend widgets communicate with backend services through Riverpod providers, eliminating the need for HTTP APIs or network calls for core functionality.
+
+**Example Flow - Adding an Expense:**
+```dart
+// 1. User taps "Add Expense" button
+// 2. Widget calls provider method
+ref.read(expenseNotifierProvider.notifier).addExpense(expense)
+
+// 3. Provider updates state and calls service
+await DatabaseService.addExpense(expense);
+
+// 4. Service encrypts and stores in Hive
+await _expenseBox.put(expense.id, expense);
+
+// 5. Provider notifies widgets of state change
+notifyListeners();
+
+// 6. UI automatically rebuilds with new data
+```
+
+#### 2. **Reactive State Updates**
+Using Riverpod's reactive system, data flows automatically from storage to UI without manual synchronization.
+
+**Data Flow Pattern:**
+```
+User Action → Provider → Service → Storage → Provider State → UI Update
+```
+
+### Detailed Data Flow Scenarios:
+
+#### Scenario 1: Expense Tracking Workflow
+
+**User Journey**: "User adds expense via voice input"
+
+```
+1. USER INTERFACE
+   ┌─────────────────────────┐
+   │  Voice Input Button     │ ← User taps microphone
+   │  (FloatingActionButton) │
+   └─────────────────────────┘
+                │
+                ▼
+2. FRONTEND PROCESSING
+   ┌─────────────────────────┐
+   │  VoiceInputService      │ ← Captures audio
+   │  Speech Recognition     │ ← "Nag-spend ako ng 50 pesos sa jeepney"
+   │  Filipino Parser        │ ← Extracts: amount=50, category=Transport
+   └─────────────────────────┘
+                │
+                ▼
+3. STATE MANAGEMENT
+   ┌─────────────────────────┐
+   │  ExpenseNotifier        │ ← Creates Expense object
+   │  (Riverpod Provider)    │ ← Validates data
+   └─────────────────────────┘
+                │
+                ▼
+4. BUSINESS LOGIC
+   ┌─────────────────────────┐
+   │  DatabaseService        │ ← Processes expense
+   │  Challenge tracking     │ ← Updates challenge progress
+   │  AI Coach analysis      │ ← Triggers coaching rules
+   └─────────────────────────┘
+                │
+                ▼
+5. DATA STORAGE
+   ┌─────────────────────────┐
+   │  Encrypted Hive Box     │ ← Stores encrypted expense
+   │  "expenses"             │ ← TypeId: 0, AES encryption
+   └─────────────────────────┘
+                │
+                ▼
+6. STATE PROPAGATION
+   ┌─────────────────────────┐
+   │  Provider Notification  │ ← Notifies listening widgets
+   │  Widget Rebuilds        │ ← UI updates automatically
+   │  Analytics Update       │ ← Recalculates totals
+   └─────────────────────────┘
+```
+
+#### Scenario 2: AI Coach Interaction
+
+**User Journey**: "User asks AI Coach about spending patterns"
+
+```
+1. USER INTERFACE
+   ┌─────────────────────────┐
+   │  AI Coach Chat Screen   │ ← User types: "How much did I spend on food?"
+   │  Text Input + Send Btn  │
+   └─────────────────────────┘
+                │
+                ▼
+2. QUERY PROCESSING
+   ┌─────────────────────────┐
+   │  AICoachService         │ ← Processes natural language
+   │  Local Rules Engine     │ ← Matches spending query pattern
+   └─────────────────────────┘
+                │
+                ▼
+3. DATA ANALYSIS
+   ┌─────────────────────────┐
+   │  ExpenseNotifier        │ ← Gets all expenses
+   │  Category Filtering     │ ← Filters "Food & Dining" 
+   │  Amount Calculation     │ ← Calculates monthly total
+   └─────────────────────────┘
+                │
+                ▼
+4. RESPONSE GENERATION
+   ┌─────────────────────────┐
+   │  Rule-based Advice      │ ← "You spent ₱1,200 on food this month"
+   │  Filipino Context       │ ← "Medyo mataas, try meal prepping!"
+   └─────────────────────────┘
+                │
+                ▼
+5. CLOUD ENHANCEMENT (Premium)
+   ┌─────────────────────────┐
+   │  OpenAI API Call        │ ← Enhances with AI insights
+   │  Fallback Protection    │ ← Uses local advice if API fails
+   └─────────────────────────┘
+                │
+                ▼
+6. RESPONSE DELIVERY
+   ┌─────────────────────────┐
+   │  Chat History Storage   │ ← Stores conversation in AICoachHistory
+   │  UI Message Display     │ ← Shows response in chat
+   │  Usage Tracking         │ ← Increments API usage counter
+   └─────────────────────────┘
+```
+
+### Service Communication Contracts:
+
+#### 1. **Database Service Interface**
+```dart
+abstract class DatabaseServiceInterface {
+  // Expense operations
+  Future<void> addExpense(Expense expense);
+  Future<List<Expense>> getAllExpenses();
+  Future<void> updateExpense(Expense expense);
+  Future<void> deleteExpense(String id);
+  
+  // Goal operations  
+  Future<void> addGoal(SavingsGoal goal);
+  Future<List<SavingsGoal>> getAllGoals();
+  
+  // Wallet operations
+  Future<void> addWallet(Wallet wallet);
+  Future<List<Wallet>> getAllWallets();
+}
+```
+
+#### 2. **AI Coach Service Interface**
+```dart
+abstract class AICoachServiceInterface {
+  Future<String> getFinancialAdvice(UserFinancialContext context);
+  Future<String> processNaturalLanguageQuery(String query);
+  Stream<CoachingMessage> getDailyNudges();
+  Future<List<String>> getSavingsTips(SavingsGoal goal);
+}
+```
+
+#### 3. **State Provider Contracts**
+```dart
+// Expense State Provider
+@riverpod
+class ExpenseNotifier extends _$ExpenseNotifier {
+  @override
+  Future<List<Expense>> build() => DatabaseService.getAllExpenses();
+  
+  Future<void> addExpense(Expense expense) async {
+    state = AsyncLoading();
+    await DatabaseService.addExpense(expense);
+    ref.invalidateSelf(); // Triggers rebuild
+  }
+}
+```
+
+### Data Storage Architecture:
+
+#### **Hive Box Structure:**
+```dart
+┌─────────────────┬──────────┬─────────────────────────────────┐
+│ Box Name        │ TypeId   │ Data Model                      │
+├─────────────────┼──────────┼─────────────────────────────────┤
+│ expenses        │ 0        │ Expense (amount, category, etc) │
+│ goals           │ 2        │ SavingsGoal (target, progress)  │
+│ userData        │ 3        │ UserData (profile, preferences) │
+│ wallets         │ 10       │ Wallet (balance, type)          │
+│ challenges      │ 13       │ Challenge (progress, rewards)   │
+│ coachHistory    │ 12       │ AICoachHistory (conversations)  │
+│ subscription    │ 15       │ SubscriptionStatus (premium)    │
+└─────────────────┴──────────┴─────────────────────────────────┘
+```
+
+#### **Encryption Layer:**
+```
+Raw Data → AES Encryption → Hive Storage → Secure Storage Key
+                ↑                              ↓
+        Generated Key ←─── FlutterSecureStorage
+```
+
+### Error Handling & Resilience:
+
+#### **Offline-First Design:**
+```
+User Action → Local Processing → Local Storage → UI Update
+                                      ↓
+                              Cloud Sync (When Available)
+                                      ↓
+                              Conflict Resolution
+```
+
+#### **Fallback Mechanisms:**
+```dart
+// AI Coach with fallback
+try {
+  // Try cloud AI (premium feature)
+  response = await cloudAI.getAdvice(context);
+} catch (e) {
+  // Fallback to local rules
+  response = await localRules.getAdvice(context);
+}
+```
+
+### Performance Optimizations:
+
+#### **Data Flow Efficiency:**
+1. **Lazy Loading**: Load data only when needed
+2. **Caching**: Keep frequently accessed data in memory
+3. **Batching**: Group database operations
+4. **Reactive Updates**: Only rebuild affected widgets
+
+#### **Memory Management:**
+```dart
+// Efficient data loading
+@riverpod
+Future<List<Expense>> recentExpenses(RecentExpensesRef ref) async {
+  // Only load last 30 days by default
+  final thirtyDaysAgo = DateTime.now().subtract(Duration(days: 30));
+  return DatabaseService.getExpensesSince(thirtyDaysAgo);
+}
+```
+
+### Security Considerations:
+
+#### **Data Protection Flow:**
+```
+User Input → Input Validation → Business Logic → Encryption → Storage
+                                       ↓
+                              Access Control Check
+                                       ↓
+                              Feature Permission Validation
+```
+
+#### **Authentication Integration:**
+```dart
+// Secure data access
+Future<T> _secureOperation<T>(Future<T> Function() operation) async {
+  // Check authentication
+  final authResult = await SecurityService.authenticateUser();
+  if (!authResult.isSuccess) throw UnauthorizedException();
+  
+  // Perform operation
+  return await operation();
+}
+```
+
+### Cloud Integration Points:
+
+#### **Optional Cloud Services:**
+1. **AI Coach Enhancement**: OpenAI API for advanced insights
+2. **Analytics**: Anonymized usage statistics (opt-in)
+3. **Monetization**: App Store purchase verification
+4. **Backup**: Encrypted cloud backup (future enhancement)
+
+#### **Network Failure Handling:**
+```
+Local Data Always Available
+         ↓
+Cloud Enhancement (Best Effort)
+         ↓
+Graceful Degradation on Failure
+         ↓
+User Never Blocked
+```
+
+### Development Workflow:
+
+#### **Testing Data Flow:**
+1. **Unit Tests**: Test each service in isolation
+2. **Integration Tests**: Test service communication
+3. **Widget Tests**: Test UI state updates
+4. **E2E Tests**: Test complete user workflows
+
+#### **Debugging Strategy:**
+```dart
+// Comprehensive logging
+class DataFlowLogger {
+  static void logUserAction(String action) => 
+    debugPrint('🎯 User Action: $action');
+    
+  static void logServiceCall(String service, String method) => 
+    debugPrint('⚙️ Service: $service.$method');
+    
+  static void logDataStorage(String entity, String operation) => 
+    debugPrint('💾 Storage: $entity $operation');
+    
+  static void logStateUpdate(String provider) => 
+    debugPrint('🔄 State Update: $provider');
+}
+```
+
+### Future Considerations:
+
+#### **Scalability Provisions:**
+- **Modular Services**: Easy to extract to microservices later
+- **Interface Contracts**: Stable APIs for service swapping
+- **Cloud Migration Path**: Local services can be moved to cloud
+- **Multi-Device Sync**: Architecture supports future sync features
+
+This local-first architecture ensures IponGPT works reliably offline while providing a foundation for future cloud enhancements, maintaining the privacy-first approach that Filipino users expect for their financial data.
+
+→ **[Detailed Technical Specification Coming Soon]**: A comprehensive technical document detailing implementation specifics, API contracts, and integration patterns.
