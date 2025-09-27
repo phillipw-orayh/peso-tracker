@@ -2,7 +2,7 @@
 
 An AI-powered Filipino Financial Tracker Flutter application.
 
-## Getting Started
+## Getting Started with the app now
 
 This project is a starting point for a Flutter application.
 
