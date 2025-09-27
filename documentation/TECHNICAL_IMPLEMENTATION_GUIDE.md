@@ -99,7 +99,6 @@ class SpendingTrendsWidget extends StatelessWidget {
 ---
 
 ## 2. Refactor Expense Screen (AddExpenseScreen)
-
 ### Current Layout:
 ![Add Expense Screen Current Layout](../old-layout-images/add-expense.png)
 
